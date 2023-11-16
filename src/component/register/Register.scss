@@ -1,0 +1,19 @@
+input.form-control,
+input.form-control:focus {
+  background: #f0f0ff;
+}
+
+.error {
+  position: absolute;
+  color: red;
+  font-size: 0.9rem;
+}
+
+label {
+  font-size: $fs-18;
+  color: $color-primary;
+}
+
+.sign-up-button {
+  color: $color-primary;
+}

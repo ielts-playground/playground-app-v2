@@ -1,0 +1,31 @@
+.button {
+  z-index: 1;
+  position: relative;
+  color: $color-primary;
+  padding: 8px 16px;
+  outline: none;
+  border: 1px solid $color-primary;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: $background-primary;
+  border-radius: 6px;
+  font-size: $fs-24;
+
+  &::after {
+    content: '';
+    z-index: -1;
+    background-color: $background-primary;
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    width: 20px;
+    transform: translate3d(-525%, 0, 0) rotate(35deg);
+  }
+
+  &:hover::after {
+    transition: transform 0.45s ease-in-out;
+    transform: translate3d(200%, 0, 0) rotate(35deg);
+    background-color: $color-primary;
+    opacity: 0.8;
+  }
+}
