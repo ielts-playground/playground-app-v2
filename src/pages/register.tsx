@@ -1,19 +1,36 @@
-import Image from 'next/image';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import useToast from '@/hooks/useToast';
+
+import { RegisterType } from '@/models/auth';
+import { registerApi } from '@/services/auth';
+
 import Register from '@/component/register/Register';
-import rocketImg from '../../public/assets/rocket.png';
+import Loading from '@/component/common/loadding/Loading';
 
 const RegisterPage = () => {
+  const router = useRouter();
+  const { notify } = useToast();
+
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const handleRegister = async (values: RegisterType) => {
+    setIsLoading(true);
+    const res = await registerApi({ ...values, subscription: 'FREE' });
+    if (res.data) {
+      router.push('/login');
+      notify('success', 'Register successfully, please login!');
+    } else {
+      notify('error', 'Something error!');
+    }
+    setIsLoading(false);
+  };
+
   return (
-    <div className='container mt-3'>
-      <div className='row'>
-        <div className='col-md-5 col-sm-12'>
-          <Register />
-        </div>
-        <div className='col-md-7 col-sm-12 my-auto'>
-          <Image className='img-fluid w-100' src={rocketImg} alt='' />
-        </div>
-      </div>
-    </div>
+    <>
+      <Loading loading={isLoading} />
+      <Register onRegister={handleRegister} />
+    </>
   );
 };
 

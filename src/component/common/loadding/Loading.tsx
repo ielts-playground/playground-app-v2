@@ -1,8 +1,12 @@
 import './Loading.scss';
 
-const Loading = () => {
+type Props = {
+  loading: boolean;
+};
+
+const Loading = ({ loading }: Props) => {
   return (
-    <div id='loading' className='hide'>
+    <div id='loading' className={loading ? '' : 'hide'}>
       <div id='loadingInnerWrapper'>
         <span id='load1'>.</span>
         <span id='load2'>.</span>

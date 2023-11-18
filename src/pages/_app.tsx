@@ -8,13 +8,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import '../styles/index.scss';
-import Loading from '@/component/common/loadding/Loading';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* <Loading /> */}
-
       <Layout>
         <Component {...pageProps} />
         <ToastContainer />

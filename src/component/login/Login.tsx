@@ -1,20 +1,16 @@
 import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { ToastContainer, toast } from 'react-toastify';
-
-import { loginApi } from '@/services/auth';
-import { Login } from '@/models/auth';
+import { LoginType } from '@/models/auth';
 
 import Button from '../common/button/Button';
 import './Login.scss';
-import useToast from '@/hooks/useToast';
 
-const Login = () => {
-  const router = useRouter();
+type Props = {
+  onClickLogin: (payload: LoginType) => void;
+};
+
+const Login = ({ onClickLogin }: Props) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
-  const { notify } = useToast();
 
   function inputChangeHandler(
     setState: Dispatch<SetStateAction<string>>
@@ -24,17 +20,12 @@ const Login = () => {
     };
   }
 
-  const handleLogin = async () => {
-    const payload: Login = {
+  const handleLogin = () => {
+    const payload: LoginType = {
       identity: email,
       password: password,
     };
-    const res = await loginApi(payload);
-    if (res) {
-      router.push('/home');
-    } else {
-      notify('error', 'Email or Password incorrect!');
-    }
+    onClickLogin(payload);
   };
 
   return (
@@ -65,7 +56,6 @@ const Login = () => {
           onClick={handleLogin}
         />
       </div>
-      <ToastContainer />
     </div>
   );
 };
