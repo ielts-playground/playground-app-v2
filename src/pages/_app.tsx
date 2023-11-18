@@ -1,15 +1,25 @@
 import type { AppProps } from 'next/app';
 import { wrapper } from '@/store/store';
+import { ToastContainer } from 'react-toastify';
 
 import { Layout } from '@/component/layout/Layout';
-import '../styles/index.scss';
+
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-toastify/dist/ReactToastify.css';
+
+import '../styles/index.scss';
+import Loading from '@/component/common/loadding/Loading';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      {/* <Loading /> */}
+
+      <Layout>
+        <Component {...pageProps} />
+        <ToastContainer />
+      </Layout>
+    </>
   );
 }
 

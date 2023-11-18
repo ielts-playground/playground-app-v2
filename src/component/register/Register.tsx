@@ -1,17 +1,26 @@
 import { Formik, Form } from 'formik';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import * as Yup from 'yup';
 import { TextField } from './TextField';
 
-import './Register.scss';
+import useToast from '@/hooks/useToast';
+
+import { Register } from '@/models/auth';
+import { registerApi } from '@/services/auth';
+
 import Button from '../common/button/Button';
-import Link from 'next/link';
-import { Register } from '@/models/register';
-import { registerApi } from '@/services/login';
+
+import './Register.scss';
 
 const phoneRegExp =
   /^(0|84)(2(0[3-9]|1[0-6|8|9]|2[0-2|5-9]|3[2-9]|4[0-9]|5[1|2|4-9]|6[0-3|9]|7[0-7]|8[0-9]|9[0-4|6|7|9])|3[2-9]|5[5|6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])([0-9]{7})$/;
 
 const Register = () => {
+  const router = useRouter();
+
+  const { notify } = useToast();
+
   const validate = Yup.object({
     fullName: Yup.string()
       .min(3, 'Must be 15 characters or less')
@@ -30,7 +39,11 @@ const Register = () => {
   });
 
   const handleSubmit = async (values: Register) => {
-    await registerApi({ ...values, subscription: 'FREE' });
+    const res = await registerApi({ ...values, subscription: 'FREE' });
+    if (res.data) {
+      router.push('/login');
+      notify('success', 'Register successfully, please login!');
+    }
   };
 
   return (
@@ -54,9 +67,9 @@ const Register = () => {
             <TextField label='Phone' name='phoneNumber' type='text' />
             <TextField label='Password' name='password' type='password' />
             <TextField label='Confirm Password' name='passwordConfirm' type='password' />
-            <div className='d-flex justify-content-center gap-4 mt-20'>
-              <Button text='Register' type='submit' />
-              <Button text='Reset' type='reset' />
+            <div className='d-flex gap-4 mt-20'>
+              <Button text='Register' type='submit' style={{ fontSize: '18px' }} />
+              <Button text='Reset' type='reset' style={{ fontSize: '18px' }} />
             </div>
           </Form>
           <div className='mt-4'>
