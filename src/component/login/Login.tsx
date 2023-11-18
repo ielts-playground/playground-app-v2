@@ -1,14 +1,16 @@
-import { ChangeEventHandler, Dispatch, SetStateAction, useEffect, useState } from 'react';
-import Image from 'next/image';
-import PocketBase from 'pocketbase';
+import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
+import { LoginType } from '@/models/auth';
 
-import styles from './Login.module.scss';
+import Button from '../common/button/Button';
+import './Login.scss';
 
-const Login = () => {
-  const [pb, setPb] = useState<PocketBase>();
+type Props = {
+  onClickLogin: (payload: LoginType) => void;
+};
+
+const Login = ({ onClickLogin }: Props) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [authReloaded, setAuthReloaded] = useState<boolean>(false);
 
   function inputChangeHandler(
     setState: Dispatch<SetStateAction<string>>
@@ -18,78 +20,43 @@ const Login = () => {
     };
   }
 
-  useEffect(() => {
-    const base = new PocketBase('https://tuanm.dev/pb');
-    base.authStore.onChange(() => setAuthReloaded(true), true);
-    setPb(base);
-  }, []);
-
-  useEffect(() => {
-    authReloaded && setAuthReloaded(false);
-  }, [authReloaded]);
-
-  const logIn = async () => {
-    try {
-      await pb?.collection('users').authWithPassword(email, password);
-    } catch {
-      alert('Username or Password incorrect!');
-    }
-  };
-
-  const logOut = () => {
-    pb?.authStore.clear();
-  };
-
-  const userAvatar = () => {
-    if (!pb?.authStore?.model) {
-      return '';
-    }
-    console.log(pb?.authStore);
-
-    return pb.files.getUrl(pb.authStore.model, pb.authStore.model['anh_dai_dien']);
-  };
-
-  const userName = () => {
-    return pb?.authStore.model!['name'] as string;
+  const handleLogin = () => {
+    const payload: LoginType = {
+      identity: email,
+      password: password,
+    };
+    onClickLogin(payload);
   };
 
   return (
-    <>
-      {!pb && <>Loading...</>}
-      {pb && (
-        <>
-          {!pb.authStore.isValid && (
-            <>
-              <input
-                className={styles.block}
-                placeholder='email'
-                onChange={inputChangeHandler(setEmail)}
-              />
-              <input
-                className={styles.block}
-                placeholder='password'
-                type='password'
-                onChange={inputChangeHandler(setPassword)}
-              />
-              <button onClick={logIn}>Log in</button>
-            </>
-          )}
-          {pb.authStore.isValid && (
-            <>
-              <Image
-                className={styles.small}
-                src={userAvatar()}
-                alt='avatar'
-                width={40}
-                height={40}
-              />
-              <p>Hi {userName()}!</p>
-              <button onClick={logOut}>Log out</button>
-            </>
-          )}
-        </>
-      )}
-    </>
+    <div className='container' style={{ width: '400px' }}>
+      <div className='form-title gap-4'>
+        <h2 className='mb-4'>Login</h2>
+        <input
+          className='form-control shadow-none mb-4'
+          autoComplete='off'
+          placeholder='Email'
+          type='text'
+          onChange={inputChangeHandler(setEmail)}
+        />
+        <input
+          className='form-control shadow-none  mb-4'
+          autoComplete='off'
+          placeholder='Password'
+          type='password'
+          onChange={inputChangeHandler(setPassword)}
+        />
+      </div>
+      <a href=''>FORGOT PASSWORD</a>
+      <div className='mt-4'>
+        <Button
+          text='Login'
+          type='reset'
+          style={{ fontSize: '18px', width: '100%' }}
+          onClick={handleLogin}
+        />
+      </div>
+    </div>
   );
 };
 
