@@ -1,4 +1,4 @@
-import styles from './Button.module.scss';
+import './Button.scss';
 
 type Props = {
   text: string;
@@ -12,7 +12,7 @@ type Props = {
 };
 const Button = ({ text, style, type, onClick }: Props) => {
   return (
-    <button className={styles.button} style={style} type={type} onClick={onClick}>
+    <button className='button-common' style={style} type={type} onClick={onClick}>
       {text}
     </button>
   );

@@ -8,12 +8,21 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'tuanm.dev',
+        hostname: 'ieltsmastersource.com',
       },
     ],
   },
   env: {
-    REACT_APP_BASE_URL: 'https://tuanm.dev/pb/',
+    REACT_APP_BASE_URL: 'https://ieltsmastersource.com/',
+  },
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
+  devServer: {
+    historyApiFallback: {
+      index: '/dist/index.html',
+    },
   },
 };
 
