@@ -14,7 +14,7 @@ export const TextField = ({ label, ...props }: Props) => {
   const [field, meta] = useField(props);
   return (
     <div className='mb-4'>
-      <label htmlFor={field.name} className='mb-2'>
+      <label htmlFor={field.name} className='mb-2 color-text-secondary'>
         {label}
       </label>
       <input

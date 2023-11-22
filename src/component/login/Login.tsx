@@ -31,7 +31,7 @@ const Login = ({ onClickLogin }: Props) => {
   return (
     <div className='container' style={{ width: '400px' }}>
       <div className='form-title gap-4'>
-        <h2 className='mb-4'>Login</h2>
+        <h2 className='mb-4 color-text-secondary'>Login</h2>
         <input
           className='form-control shadow-none mb-4'
           autoComplete='off'
@@ -40,7 +40,7 @@ const Login = ({ onClickLogin }: Props) => {
           onChange={inputChangeHandler(setEmail)}
         />
         <input
-          className='form-control shadow-none  mb-4'
+          className='form-control shadow-none mb-4'
           autoComplete='off'
           placeholder='Password'
           type='password'

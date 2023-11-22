@@ -52,7 +52,9 @@ const Register = ({ onRegister }: Props) => {
           <div className='row'>
             <div className='col-md-5 col-sm-12'>
               <div>
-                <h1 className='my-4 font-weight-bold sign-up-button'>Sign Up</h1>
+                <h1 className='my-4 font-weight-bold sign-up-button color-text-secondary'>
+                  Sign Up
+                </h1>
                 <Form>
                   <TextField label='Full Name' name='fullName' type='text' />
                   <TextField label='Email' name='email' type='email' />

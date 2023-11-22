@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
 import { Header } from './header/Header';
 
-import styles from './Layout.module.scss';
-import Loading from '../common/loadding/Loading';
+import './Layout.scss';
 
 type LayoutProps = {
   readonly children: ReactNode;
@@ -11,6 +10,6 @@ type LayoutProps = {
 export const Layout = ({ children }: LayoutProps) => (
   <>
     <Header />
-    <main className={styles.mainContainer}>{children}</main>
+    <main className='main-container'>{children}</main>
   </>
 );
