@@ -4,11 +4,11 @@ import * as Yup from 'yup';
 
 import { LoginType } from '@/models/auth';
 
-import Button from '../common/button/Button';
+import Button from '../common/button/button';
 import { EMAIL_REG_EXP } from '@/constant/auth';
 import { TextField } from '../register/text-field';
 
-import './Login.scss';
+import './login.scss';
 
 type Props = {
   onClickLogin: (payload: LoginType) => void;

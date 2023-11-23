@@ -7,11 +7,11 @@ import { TextField } from './text-field';
 
 import { RegisterType } from '@/models/auth';
 
-import Button from '../common/button/Button';
+import Button from '../common/button/button';
 import { EMAIL_REG_EXP, PHONE_REG_EXP } from '@/constant/auth';
 import rocketImg from '../../../public/assets/rocket.png';
 
-import './Register.scss';
+import './register.scss';
 
 type Props = {
   onRegister: (values: RegisterType) => void;

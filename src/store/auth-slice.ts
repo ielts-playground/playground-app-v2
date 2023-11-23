@@ -4,12 +4,12 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { AuthResponse } from '@/models/auth';
 
 export interface AuthState {
-  authState: boolean;
+  typeRegister: 'FREE' | 'VIP';
   information: AuthResponse | undefined;
 }
 
 const initialState: AuthState = {
-  authState: false,
+  typeRegister: 'FREE',
   information: undefined,
 };
 
@@ -17,8 +17,8 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setAuthState(state, action) {
-      state.authState = action.payload;
+    setTypeRegister(state, action) {
+      state.typeRegister = action.payload;
     },
     setAuthInformation(state, action) {
       state.information = action.payload;
@@ -35,6 +35,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setAuthState, setAuthInformation } = authSlice.actions;
+export const { setTypeRegister, setAuthInformation } = authSlice.actions;
 
 export const selectAuthState = (state: AppState) => state.auth;
