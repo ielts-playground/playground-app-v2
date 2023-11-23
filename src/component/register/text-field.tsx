@@ -1,12 +1,12 @@
-import { ClassAttributes, InputHTMLAttributes } from 'react';
 import { ErrorMessage, useField, FieldHookConfig } from 'formik';
 
 type Props = {
-  label: string;
+  label?: string;
   name: string;
   type?: string;
   multiple?: boolean;
   value?: string;
+  placeholder?: string;
   validate?: (value: any) => undefined | string | Promise<any>;
 };
 

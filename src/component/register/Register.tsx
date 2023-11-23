@@ -1,14 +1,14 @@
 import { Formik, Form } from 'formik';
 import Link from 'next/link';
 import Image from 'next/image';
-
 import * as Yup from 'yup';
-import { TextField } from './TextField';
+
+import { TextField } from './text-field';
 
 import { RegisterType } from '@/models/auth';
 
 import Button from '../common/button/Button';
-import { PHONE_REG_EXP } from '@/constant/auth';
+import { EMAIL_REG_EXP, PHONE_REG_EXP } from '@/constant/auth';
 import rocketImg from '../../../public/assets/rocket.png';
 
 import './Register.scss';
@@ -23,9 +23,9 @@ const Register = ({ onRegister }: Props) => {
       .min(3, 'Must be 15 characters or less')
       .max(50, 'Must be 50 characters or less')
       .required('Required'),
-    email: Yup.string().email('Email is invalid').required('Email is required'),
+    email: Yup.string().matches(EMAIL_REG_EXP, 'Email is invalid').required('Email is required'),
     phoneNumber: Yup.string()
-      .matches(PHONE_REG_EXP, 'Phone number is not valid')
+      .matches(PHONE_REG_EXP, 'Phone number is invalid')
       .required('Phone is required'),
     password: Yup.string()
       .min(8, 'Password must be at least 8 charaters')
@@ -49,7 +49,7 @@ const Register = ({ onRegister }: Props) => {
     >
       {() => (
         <div className='container mt-3'>
-          <div className='row'>
+          <div className='row container-register'>
             <div className='col-md-5 col-sm-12'>
               <div>
                 <h1 className='my-4 font-weight-bold sign-up-button color-text-secondary'>
@@ -61,7 +61,7 @@ const Register = ({ onRegister }: Props) => {
                   <TextField label='Phone' name='phoneNumber' type='text' />
                   <TextField label='Password' name='password' type='password' />
                   <TextField label='Confirm Password' name='passwordConfirm' type='password' />
-                  <div className='d-flex gap-4 mt-20'>
+                  <div className='d-flex gap-4 mt-4'>
                     <Button text='Register' type='submit' style={{ fontSize: '18px' }} />
                     <Button text='Reset' type='reset' style={{ fontSize: '18px' }} />
                   </div>

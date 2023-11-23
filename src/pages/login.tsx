@@ -4,11 +4,13 @@ import { useDispatch } from 'react-redux';
 
 import useToast from '@/hooks/useToast';
 
-import Login from '@/component/login/Login';
 import { loginApi } from '@/services/auth';
-import { LoginType } from '@/models/auth';
-import Loading from '@/component/common/loadding/Loading';
+import { BaseResponse } from '@/models/common';
+import { AuthResponse, LoginType } from '@/models/auth';
+import Loading from '@/component/common/loadding/loadding';
 import { setAuthInformation } from '@/store/authSlice';
+import Login from '@/component/login/login';
+import { CODE_SUCCESS } from '@/constant/common';
 
 const SignInPage = () => {
   const router = useRouter();
@@ -19,9 +21,9 @@ const SignInPage = () => {
 
   const handleLogin = async (payload: LoginType) => {
     setIsLoading(true);
-    const res = await loginApi(payload);
-    if (res) {
-      dispatch(setAuthInformation(res));
+    const res: BaseResponse<AuthResponse> = await loginApi(payload);
+    if (res.code === CODE_SUCCESS) {
+      dispatch(setAuthInformation(res.data));
       router.push('/home');
     } else {
       notify('error', 'Email or Password incorrect!');

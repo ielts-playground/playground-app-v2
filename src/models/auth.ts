@@ -8,11 +8,21 @@ export type RegisterType = {
 };
 
 export type LoginType = {
-  identity: string;
+  email: string;
   password: string;
 };
 
-export type RecordInfoUser = {
+export type VerifyEmailRequest = {
+  email: string;
+  code: string;
+};
+
+export type VerifyEmailRepose = {
+  email: string;
+  code: string;
+};
+
+export type UserInfoUser = {
   activated: boolean;
   avatar: string;
   collectionId: string;
@@ -31,6 +41,6 @@ export type RecordInfoUser = {
 };
 
 export type AuthResponse = {
-  record: RecordInfoUser;
+  user: UserInfoUser;
   token: string;
 };

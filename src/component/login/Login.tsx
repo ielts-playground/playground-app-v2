@@ -1,7 +1,13 @@
-import { ChangeEventHandler, Dispatch, SetStateAction, useState } from 'react';
+import Link from 'next/link';
+import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
+
 import { LoginType } from '@/models/auth';
 
 import Button from '../common/button/Button';
+import { EMAIL_REG_EXP } from '@/constant/auth';
+import { TextField } from '../register/text-field';
+
 import './Login.scss';
 
 type Props = {
@@ -9,54 +15,46 @@ type Props = {
 };
 
 const Login = ({ onClickLogin }: Props) => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-
-  function inputChangeHandler(
-    setState: Dispatch<SetStateAction<string>>
-  ): ChangeEventHandler<HTMLInputElement> {
-    return (e) => {
-      setState(e.target.value);
-    };
-  }
-
-  const handleLogin = () => {
-    const payload: LoginType = {
-      identity: email,
-      password: password,
-    };
-    onClickLogin(payload);
-  };
+  const validate = Yup.object({
+    email: Yup.string().matches(EMAIL_REG_EXP, 'Email is invalid').required('Email is required'),
+    password: Yup.string()
+      .min(8, 'Password must be at least 8 charaters')
+      .required('Password is required'),
+  });
 
   return (
-    <div className='container' style={{ width: '400px' }}>
-      <div className='form-title gap-4'>
-        <h2 className='mb-4 color-text-secondary'>Login</h2>
-        <input
-          className='form-control shadow-none mb-4'
-          autoComplete='off'
-          placeholder='Email'
-          type='text'
-          onChange={inputChangeHandler(setEmail)}
-        />
-        <input
-          className='form-control shadow-none mb-4'
-          autoComplete='off'
-          placeholder='Password'
-          type='password'
-          onChange={inputChangeHandler(setPassword)}
-        />
-      </div>
-      <a href=''>FORGOT PASSWORD</a>
-      <div className='mt-4'>
-        <Button
-          text='Login'
-          type='reset'
-          style={{ fontSize: '18px', width: '100%' }}
-          onClick={handleLogin}
-        />
-      </div>
-    </div>
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      validationSchema={validate}
+      onSubmit={(values) => onClickLogin(values)}
+    >
+      {() => (
+        <div className='container-login'>
+          <div className='form-title'>
+            <h2 className='color-text-secondary'>Login</h2>
+            <Form>
+              <TextField name='email' type='text' placeholder='Email' />
+              <TextField name='password' type='password' placeholder='Password' />
+              <div className='my-4'>
+                <Button
+                  className='mt-4'
+                  text='Login'
+                  type='submit'
+                  style={{ fontSize: '18px', width: '100%' }}
+                />
+              </div>
+            </Form>
+            <div>
+              <Link href='/register'>Do not have an account?</Link>
+            </div>
+            <Link href='/register'>Forgot password</Link>
+          </div>
+        </div>
+      )}
+    </Formik>
   );
 };
 

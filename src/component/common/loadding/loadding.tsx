@@ -1,4 +1,4 @@
-import './Loading.scss';
+import './loadding.scss';
 
 type Props = {
   loading: boolean;
