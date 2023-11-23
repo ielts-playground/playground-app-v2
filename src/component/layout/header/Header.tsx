@@ -9,7 +9,7 @@ export const Header = () => {
     <header className='header-outer'>
       <div className='header-inner responsive-wrapper'>
         <div className='header-logo'>Logo</div>
-        <nav className='header-navigation'>{information ? information.record.fullName : ''}</nav>
+        <nav className='header-navigation'>{information ? information.user.fullName : ''}</nav>
       </div>
     </header>
   );

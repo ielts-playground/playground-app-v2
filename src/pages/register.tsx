@@ -5,8 +5,8 @@ import useToast from '@/hooks/useToast';
 import { RegisterType } from '@/models/auth';
 import { registerApi } from '@/services/auth';
 
-import Register from '@/component/register/Register';
-import Loading from '@/component/common/loadding/Loading';
+import Loading from '@/component/common/loadding/loadding';
+import Register from '@/component/register/register';
 
 const RegisterPage = () => {
   const router = useRouter();

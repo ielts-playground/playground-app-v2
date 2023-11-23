@@ -1,15 +1,11 @@
-input.form-control,
-input.form-control:focus {
-  background: #f0f0ff;
-}
+.container-login {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  box-shadow: $box-shadow-primary;
 
-.error {
-  position: absolute;
-  color: red;
-  font-size: 0.9rem;
-}
-
-label {
-  font-size: $fs-18;
-  // color: $color-primary;
+  .form-title {
+    width: 300px;
+  }
 }

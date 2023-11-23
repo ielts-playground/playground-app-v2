@@ -1,4 +1,5 @@
 export type BaseResponse<T> = {
-  status: boolean;
+  code: string;
+  message: string;
   data: T;
 };

@@ -1,7 +1,12 @@
 .main-container {
   background-color: $background-primary;
-  height: calc(100vh - $header-outer-height);
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .main-container {
+    height: calc(100vh - $header-outer-height);
+  }
 }
