@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import './Header.scss';
-import { selectAuthState } from '@/store/authSlice';
+import './header.scss';
+import { selectAuthState } from '@/store/auth-slice';
 
 export const Header = () => {
   const authState = useSelector(selectAuthState);

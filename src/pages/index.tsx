@@ -1,11 +1,11 @@
-import HomePage from '@/component/home/HomePage';
+import Home from '@/component/init-page/init-page';
 
-const Home = () => {
+const InitPage = () => {
   return (
     <>
-      <HomePage />
+      <Home />
     </>
   );
 };
 
-export default Home;
+export default InitPage;

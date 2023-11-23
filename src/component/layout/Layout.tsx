@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
-import { Header } from './header/Header';
-import './Layout.scss';
+import { Header } from './header/header';
+import './layout.scss';
 
 type LayoutProps = {
   readonly children: ReactNode;
