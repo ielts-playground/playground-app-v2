@@ -17,7 +17,7 @@ export type VerifyEmailRequest = {
   code: string;
 };
 
-export type VerifyEmailRepose = {
+export type VerifyEmailReponse = {
   email: string;
   code: string;
 };
