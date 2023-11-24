@@ -5,11 +5,13 @@ import { AuthResponse } from '@/models/auth';
 
 export interface AuthState {
   typeRegister: 'FREE' | 'VIP';
+  emailVerify: string;
   information: AuthResponse | undefined;
 }
 
 const initialState: AuthState = {
   typeRegister: 'FREE',
+  emailVerify: '',
   information: undefined,
 };
 
@@ -19,6 +21,9 @@ export const authSlice = createSlice({
   reducers: {
     setTypeRegister(state, action) {
       state.typeRegister = action.payload;
+    },
+    setEmailVerify(state, action) {
+      state.emailVerify = action.payload;
     },
     setAuthInformation(state, action) {
       state.information = action.payload;
@@ -35,6 +40,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setTypeRegister, setAuthInformation } = authSlice.actions;
+export const { setTypeRegister, setEmailVerify, setAuthInformation } = authSlice.actions;
 
 export const selectAuthState = (state: AppState) => state.auth;

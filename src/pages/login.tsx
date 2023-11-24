@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
-
 import useToast from '@/hooks/useToast';
+
+import { setAuthInformation } from '@/store/auth-slice';
+import { CODE_SUCCESS } from '@/constant/common';
 
 import { loginApi } from '@/services/auth';
 import { BaseResponse } from '@/models/common';
 import { AuthResponse, LoginType } from '@/models/auth';
+
 import Loading from '@/component/common/loadding/loadding';
-import { setAuthInformation } from '@/store/auth-slice';
 import Login from '@/component/login/login';
-import { CODE_SUCCESS } from '@/constant/common';
 
 const SignInPage = () => {
   const router = useRouter();

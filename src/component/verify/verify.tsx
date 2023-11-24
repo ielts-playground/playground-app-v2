@@ -8,8 +8,14 @@ const KEYBOARDS = {
   arrowRight: 39,
 };
 
-const Verify = () => {
+type Props = {
+  emailVerify: string;
+  onSubmitVerify: (code: string) => void;
+};
+
+const Verify = ({ emailVerify, onSubmitVerify }: Props) => {
   const [listValueInCodeVerify, setListValueInCodeVerify] = useState<string[]>([]);
+  const [emailVerifyConvert, setEmailVerifyConvert] = useState<string>('');
 
   useEffect(() => {
     const initListValue: string[] = [];
@@ -20,15 +26,20 @@ const Verify = () => {
   }, []);
 
   useEffect(() => {
+    const [nameEmail, domainEmail] = emailVerify.split('@');
+  }, [emailVerify]);
+
+  useEffect(() => {
     const isSubmit = listValueInCodeVerify.every((item) => !!item);
-    if (isSubmit) {
-      setListValueInCodeVerify((prev) => {
-        return prev.map((item) => {
-          item = '';
-          return item;
-        });
-      });
-      console.log('Submit here');
+
+    if (isSubmit && listValueInCodeVerify) {
+      onSubmitVerify(listValueInCodeVerify.join(''));
+      // setListValueInCodeVerify((prev) => {
+      //   return prev.map((item) => {
+      //     item = '';
+      //     return item;
+      //   });
+      // });
     }
   }, [listValueInCodeVerify]);
 
@@ -118,8 +129,8 @@ const Verify = () => {
       <form action='#'>
         <div className='d-flex flex-column align-items-center justify-content-center'>
           <h3>OTP VERIFICATION</h3>
-          <p className='info'>An otp has been sent to </p>
-          <p>********k876@gmail.com</p>
+          <p className='info'>An OTP has been sent to</p>
+          <p>{emailVerify}</p>
           <p className='msg'>Please enter OTP to verify</p>
         </div>
         <div className='d-flex mb-3'>
