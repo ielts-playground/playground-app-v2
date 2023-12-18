@@ -20,7 +20,7 @@ const Init = () => {
     <div className='home'>
       <div className='button-container mb-4'>
         <Button className='w-200' text='FREE' onClick={() => handleToRegister('FREE')} />
-        <Button className='w-200' text='V.I.P' onClick={() => handleToRegister('VIP')} />
+        <Button className='w-200' text='V.I.P' onClick={() => handleToRegister('PREMIUM')} />
       </div>
       <Link href='/login'>Do you have an account?</Link>
     </div>
