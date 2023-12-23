@@ -1,0 +1,67 @@
+$time-warning-color: #ff0000;
+
+.icon-size {
+  width: 36px;
+  height: 36px;
+}
+
+.exam-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  background-color: $background-secondary;
+  box-shadow: $box-shadow-primary;
+  padding: 0 20px;
+
+  .info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .info-user {
+      font-size: $fs-16;
+      padding-left: 16px;
+      color: $text-black-color;
+      font-weight: 100;
+    }
+
+    .time__down {
+      display: flex;
+      align-items: center;
+      width: 140px;
+      padding-left: 16px;
+      font-size: $fs-16;
+      cursor: default;
+
+      .time {
+        font-size: 22px !important;
+        font-weight: 560;
+      }
+
+      .left-text {
+        font-size: $fs-16;
+        margin-left: 4px;
+      }
+    }
+
+    .time__warning {
+      color: $time-warning-color;
+    }
+  }
+}
+
+.right-info {
+  display: flex;
+  align-items: center;
+
+  .listening-box {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+
+    .slide-volume {
+      margin-left: 10px;
+    }
+  }
+}
