@@ -4,7 +4,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 import { AuthResponse } from '@/models/auth';
 
 export interface AuthState {
-  typeRegister: 'FREE' | 'VIP';
+  typeRegister: 'FREE' | 'PREMIUM';
   emailVerify: string;
   information: AuthResponse | undefined;
 }

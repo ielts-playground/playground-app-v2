@@ -10,10 +10,11 @@ const KEYBOARDS = {
 
 type Props = {
   emailVerify: string;
+  isVerifyError: boolean;
   onSubmitVerify: (code: string) => void;
 };
 
-const Verify = ({ emailVerify, onSubmitVerify }: Props) => {
+const Verify = ({ emailVerify, isVerifyError, onSubmitVerify }: Props) => {
   const [listValueInCodeVerify, setListValueInCodeVerify] = useState<string[]>([]);
   const [emailVerifyConvert, setEmailVerifyConvert] = useState<string>('');
 
@@ -26,21 +27,29 @@ const Verify = ({ emailVerify, onSubmitVerify }: Props) => {
   }, []);
 
   useEffect(() => {
+    if (isVerifyError) {
+      setListValueInCodeVerify((prev) => {
+        return prev.map((item) => {
+          item = '';
+          return item;
+        });
+      });
+    }
+  }, [isVerifyError]);
+
+  useEffect(() => {
     const [nameEmail, domainEmail] = emailVerify.split('@');
+    const securityMail = `*****${nameEmail.slice(-3)}`;
+    setEmailVerifyConvert(`${securityMail}@${domainEmail}`);
   }, [emailVerify]);
 
   useEffect(() => {
     const isSubmit = listValueInCodeVerify.every((item) => !!item);
 
-    if (isSubmit && listValueInCodeVerify) {
+    if (isSubmit && listValueInCodeVerify.length) {
       onSubmitVerify(listValueInCodeVerify.join(''));
-      // setListValueInCodeVerify((prev) => {
-      //   return prev.map((item) => {
-      //     item = '';
-      //     return item;
-      //   });
-      // });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listValueInCodeVerify]);
 
   const handleChange = (e: { target: any }, indexChange: number) => {
@@ -130,7 +139,7 @@ const Verify = ({ emailVerify, onSubmitVerify }: Props) => {
         <div className='d-flex flex-column align-items-center justify-content-center'>
           <h3>OTP VERIFICATION</h3>
           <p className='info'>An OTP has been sent to</p>
-          <p>{emailVerify}</p>
+          <p>{emailVerifyConvert}</p>
           <p className='msg'>Please enter OTP to verify</p>
         </div>
         <div className='d-flex mb-3'>

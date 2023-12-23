@@ -6,7 +6,7 @@ import {
   VerifyEmailRequest,
 } from '@/models/auth';
 import api from '../api';
-import { BaseResponse } from '@/models/common';
+import { BaseResponse } from '@/common/model';
 
 export const registerApi = async (payload: RegisterType) => {
   try {

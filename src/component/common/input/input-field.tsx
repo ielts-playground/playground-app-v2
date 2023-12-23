@@ -10,7 +10,7 @@ type Props = {
   validate?: (value: any) => undefined | string | Promise<any>;
 };
 
-export const TextField = ({ label, ...props }: Props) => {
+const InputField = ({ label, ...props }: Props) => {
   const [field, meta] = useField(props);
   return (
     <div className='mb-4'>
@@ -27,3 +27,5 @@ export const TextField = ({ label, ...props }: Props) => {
     </div>
   );
 };
+
+export default InputField;
