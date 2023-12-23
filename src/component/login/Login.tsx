@@ -3,10 +3,10 @@ import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 
 import { LoginType } from '@/models/auth';
+import { EMAIL_REG_EXP } from '@/constant/auth';
 
 import Button from '../common/button/button';
-import { EMAIL_REG_EXP } from '@/constant/auth';
-import { TextField } from '../register/text-field';
+import InputField from '../common/input/input-field';
 
 import './login.scss';
 
@@ -36,8 +36,8 @@ const Login = ({ onClickLogin }: Props) => {
           <div className='form-title'>
             <h2 className='color-text-secondary'>Login</h2>
             <Form>
-              <TextField name='email' type='text' placeholder='Email' />
-              <TextField name='password' type='password' placeholder='Password' />
+              <InputField name='email' type='text' placeholder='Email' />
+              <InputField name='password' type='password' placeholder='Password' />
               <div className='my-4'>
                 <Button
                   className='mt-4'

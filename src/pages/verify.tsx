@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 import useToast from '@/hooks/useToast';
 import { selectAuthState } from '@/store/auth-slice';
 
-import { CODE_SUCCESS } from '@/constant/common';
-
+import { CODE_SUCCESS } from '@/common/constant';
 import { verifyEmailApi } from '@/services/auth';
 import { VerifyEmailRequest } from '@/models/auth';
 

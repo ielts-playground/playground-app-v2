@@ -3,14 +3,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import * as Yup from 'yup';
 
-import { TextField } from './text-field';
-
 import { RegisterType } from '@/models/auth';
+import { EMAIL_REG_EXP, PHONE_REG_EXP } from '@/constant/auth';
 
 import Button from '../common/button/button';
-import { EMAIL_REG_EXP, PHONE_REG_EXP } from '@/constant/auth';
-import rocketImg from '../../../public/assets/rocket.png';
+import InputField from '../common/input/input-field';
 
+import rocketImg from '../../../public/assets/rocket.png';
 import './register.scss';
 
 type Props = {
@@ -56,11 +55,11 @@ const Register = ({ onRegister }: Props) => {
                   Sign Up
                 </h1>
                 <Form>
-                  <TextField label='Full Name' name='fullName' type='text' />
-                  <TextField label='Email' name='email' type='email' />
-                  <TextField label='Phone' name='phoneNumber' type='text' />
-                  <TextField label='Password' name='password' type='password' />
-                  <TextField label='Confirm Password' name='passwordConfirm' type='password' />
+                  <InputField label='Full Name' name='fullName' type='text' />
+                  <InputField label='Email' name='email' type='email' />
+                  <InputField label='Phone' name='phoneNumber' type='text' />
+                  <InputField label='Password' name='password' type='password' />
+                  <InputField label='Confirm Password' name='passwordConfirm' type='password' />
                   <div className='d-flex gap-4 mt-4'>
                     <Button text='Register' type='submit' style={{ fontSize: '18px' }} />
                     <Button text='Reset' type='reset' style={{ fontSize: '18px' }} />

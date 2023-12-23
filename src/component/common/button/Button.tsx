@@ -8,7 +8,7 @@ type Props = {
     height?: string;
     fontSize?: string;
   };
-  type?: 'button' | 'submit' | 'reset' | undefined;
+  type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;
 };
 const Button = ({ text, className, style, type, onClick }: Props) => {

@@ -3,13 +3,13 @@ import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import useToast from '@/hooks/useToast';
 
+import { CODE_SUCCESS } from '@/common/constant';
 import { selectAuthState, setEmailVerify } from '@/store/auth-slice';
 import { RegisterType } from '@/models/auth';
 import { registerApi } from '@/services/auth';
 
 import Loading from '@/component/common/loadding/loadding';
 import Register from '@/component/register/register';
-import { CODE_SUCCESS } from '@/constant/common';
 
 const RegisterPage = () => {
   const router = useRouter();

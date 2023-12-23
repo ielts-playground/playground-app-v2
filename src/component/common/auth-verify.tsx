@@ -31,7 +31,7 @@ const AuthVerify = ({ onLogOut, children }: Props) => {
       // user = JSON.parse(token);
     } else {
     }
-  }, [pathname]);
+  }, [pathname, router]);
 
   return <>{children}</>;
 };

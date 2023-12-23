@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Layout } from '@/component/layout/layout';
-import '../styles/index.scss';
+import '../scss/index.scss';
 import AuthVerify from '@/component/common/auth-verify';
 
 function MyApp({ Component, pageProps }: AppProps) {

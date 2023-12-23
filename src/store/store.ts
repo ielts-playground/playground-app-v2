@@ -3,12 +3,14 @@ import { createWrapper } from 'next-redux-wrapper';
 
 import { authSlice } from './auth-slice';
 import { commonSlice } from './common-slice';
+import { examSlice } from './exam-slice';
 
 const makeStore = () =>
   configureStore({
     reducer: {
       [authSlice.name]: authSlice.reducer,
       [commonSlice.name]: commonSlice.reducer,
+      [examSlice.name]: examSlice.reducer,
     },
     devTools: true,
   });

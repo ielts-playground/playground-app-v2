@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux';
 import useToast from '@/hooks/useToast';
 
 import { setAuthInformation } from '@/store/auth-slice';
-import { CODE_SUCCESS } from '@/constant/common';
+import { CODE_SUCCESS } from '@/common/constant';
 
 import { loginApi } from '@/services/auth';
-import { BaseResponse } from '@/models/common';
+import { BaseResponse } from '@/common/model';
 import { AuthResponse, LoginType } from '@/models/auth';
 
 import Loading from '@/component/common/loadding/loadding';
