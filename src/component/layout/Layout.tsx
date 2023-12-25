@@ -15,7 +15,7 @@ export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
-      {isInExam ? <Header /> : <></>}
+      <Header />
       <main className='main-container'>{children}</main>
     </>
   );

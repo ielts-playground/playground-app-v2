@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
-import useToast from '@/hooks/useToast';
+import useToast from '@/hooks/use-toast';
 import { selectAuthState } from '@/store/auth-slice';
 
 import { CODE_SUCCESS } from '@/common/constant';
@@ -9,7 +9,7 @@ import { verifyEmailApi } from '@/services/auth';
 import { VerifyEmailRequest } from '@/models/auth';
 
 import Verify from '@/component/verify/verify';
-import Loading from '@/component/common/loadding/loadding';
+import Loading from '@/component/common/loading/loading';
 
 const VerifyPage = () => {
   const router = useRouter();

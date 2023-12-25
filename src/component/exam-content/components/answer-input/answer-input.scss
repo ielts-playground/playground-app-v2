@@ -1,0 +1,22 @@
+.input-answer {
+  width: 170px;
+  height: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 4px 2px;
+  font-size: 16px;
+}
+
+.input-answer:focus {
+  outline: $background-primary auto 5px;
+}
+
+.input-answer::placeholder {
+  font-weight: bold;
+  font-size: 18px;
+  color: #757575;
+}
+
+.input-answer:focus::-webkit-input-placeholder {
+  opacity: 0;
+}

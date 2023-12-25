@@ -18,7 +18,7 @@ const ListExam = () => {
         <div key={index} className='part-item'>
           <h2 className='title-part'>{item.title}</h2>
           <div className='time fs-18 my-2'>
-            Time: {item.title === 'listening' ? '32 munites' : '1 hour'}
+            Time: {item.title === 'listening' ? '32 minutes' : '1 hour'}
           </div>
           <Button text={item.title} onClick={() => handleToExam(item.title)} />
         </div>

@@ -1,7 +1,10 @@
+import { NumericalOrder } from '../../exam-content.model';
+import './part-description.scss';
+
 type Props = {
-  isListening: boolean;
-  isReading: boolean;
-  isWriting: boolean;
+  isListening?: boolean;
+  isReading?: boolean;
+  isWriting?: boolean;
   partActive: number;
   numericalOrderInPart: NumericalOrder;
 };

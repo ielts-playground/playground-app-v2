@@ -10,10 +10,7 @@ $padding: 80px;
 }
 
 .listening-container {
-  height: calc(
-    100vh - $header-outer-height - $height-part-description - $height-footer -
-      $padding
-  );
+  height: calc(100vh - $header-outer-height - $height-part-description - $height-footer - $padding);
 
   .listening-content {
     padding: 20px;
@@ -40,14 +37,14 @@ $padding: 80px;
 
         .paragraphContent {
           margin: 16px 0 0;
-          font-size: $font-size-text-16;
+          font-size: $fs-16;
         }
 
         .question {
           width: 100%;
           display: flex;
-          color: $dark-dark;
-          font-size: $font-size-text-16;
+          color: $color-dark;
+          font-size: $fs-16;
           padding: 10px;
           margin: 28px 0 0;
           border-radius: 6px;
@@ -61,11 +58,11 @@ $padding: 80px;
         }
 
         .question__active {
-          background-color: $secondary;
-          color: $color-text-white;
+          background-color: $background-primary;
+          color: $color-white;
 
           &:hover {
-            background-color: $secondary;
+            background-color: $background-primary;
           }
         }
       }
@@ -77,10 +74,7 @@ $padding: 80px;
   min-height: 80px;
   display: flex;
   justify-content: flex-start;
-  height: calc(
-    100vh - $height-header - $height-part-description - $height-footer -
-      $padding
-  );
+  height: calc(100vh - $header-outer-height - $height-part-description - $height-footer - $padding);
 
   .topic-container {
     width: 50%;
@@ -98,28 +92,18 @@ $padding: 80px;
       margin: 20px 0;
     }
 
-    .namePart {
-      margin: 0;
-      text-align: center;
-    }
-
-    .paragraphContent {
-      margin: 16px 0 0;
-      font-size: $font-size-text-16;
-    }
-
     .question {
       width: 100%;
       display: flex;
-      background-color: $dark-light;
-      color: $color-text-white;
-      font-size: $font-size-text-16;
+      background-color: $background-primary;
+      color: $color-white;
+      font-size: $fs-16;
       padding: 10px;
       margin: 28px 0;
       border-radius: 6px;
 
       &:hover {
-        background-color: $primary;
+        background-color: $background-primary;
       }
 
       .question_number {
@@ -130,11 +114,11 @@ $padding: 80px;
       }
     }
 
-    .questionActive {
-      background-color: $secondary;
+    .question__active {
+      background-color: $background-primary;
 
       &:hover {
-        background-color: $secondary;
+        background-color: $background-primary;
       }
     }
   }
@@ -148,6 +132,6 @@ $padding: 80px;
   }
 
   .right-topic {
-    border-left: 1px solid $shadow;
+    border-left: $box-shadow-primary;
   }
 }
