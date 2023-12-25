@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import useToast from '@/hooks/useToast';
+import useToast from '@/hooks/use-toast';
 
 import { CODE_SUCCESS } from '@/common/constant';
 import { selectAuthState, setEmailVerify } from '@/store/auth-slice';
 import { RegisterType } from '@/models/auth';
 import { registerApi } from '@/services/auth';
 
-import Loading from '@/component/common/loadding/loadding';
+import Loading from '@/component/common/loading/loading';
 import Register from '@/component/register/register';
 
 const RegisterPage = () => {

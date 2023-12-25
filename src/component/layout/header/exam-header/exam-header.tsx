@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { formatTime } from './utils';
 
-import TimeExam from '~/public/svg/time-exam.svg';
+import TimeExam from '~/svg/time-exam.svg';
 import ListenExam from '~/public/svg/listen-exam.svg';
 import Button from '@/component/common/button/button';
 import Modal from './modal/modal';

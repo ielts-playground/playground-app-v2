@@ -1,24 +1,26 @@
 import { Dispatch, SetStateAction } from 'react';
 import { QUESTION_TYPE } from '@/common/constant';
-import { markdownToHtml } from '../../utils';
+import { markdownToHtml } from '../../../exam-content.utils';
+import CheckBoxAnswer from '@/component/common/check-box/check-box';
+import { DataContentType } from '../../../exam-content.model';
 
 const testHTML = `
 `;
 
 type Props = {
-  listQuestion: any;
-  questionActive: any;
+  listQuestion: DataContentType[];
+  questionActive: number;
   numberOrder: number;
   setQuestionActive: Dispatch<SetStateAction<number>>;
   onChangeValue: (questionId: number, answer: string) => void;
 };
 
-const ListeningChooseAnswer: React.FC<Props> = ({
+const ListeningChooseAnswer = ({
   listQuestion,
   questionActive,
+  numberOrder,
   setQuestionActive,
   onChangeValue,
-  numberOrder,
 }: Props) => {
   return (
     <>
@@ -31,40 +33,33 @@ const ListeningChooseAnswer: React.FC<Props> = ({
       <div className='select-question-container'>
         {listQuestion
           .filter(
-            (item: any) =>
+            (item) =>
               item.type === QUESTION_TYPE.LISTENING_CHOOSE_ANSWER &&
               item.numberOrder === numberOrder
           )
-          .map((question: any) => (
+          .map((question) => (
             <div className='one-question-container' key={question.id}>
               <div
                 id={`question${question.id}`}
-                className={`${question} ${questionActive === question.id ? questionActive : ''}`}
+                className={`question ${questionActive === question.id ? 'question__active' : ''}`}
                 onClick={() => setQuestionActive(question.id)}
               >
                 <span className='question-number'>{question.id}</span>
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: markdownToHtml(question.questionTitle),
+                    __html: markdownToHtml(question.questionTitle || ''),
                   }}
                 />
               </div>
               <div className='answer-container'>
-                {question.options.map((answer: any) => (
-                  <label
-                    className='container-checkbox'
-                    key={answer.value}
-                    style={{ lineHeight: '18px' }}
-                  >
-                    {answer.title}
-                    <input
-                      type='checkbox'
-                      value={question.value}
-                      checked={question.value === answer.value}
-                      onChange={() => onChangeValue(question.id, answer.value)}
-                    />
-                    <span className='checkmark'></span>
-                  </label>
+                {question.options?.map((answer, index) => (
+                  <CheckBoxAnswer
+                    key={index}
+                    title={answer.title}
+                    value={question.value}
+                    checked={question.value === answer.value}
+                    onChangeValue={() => onChangeValue(question.id, answer.value)}
+                  />
                 ))}
               </div>
             </div>

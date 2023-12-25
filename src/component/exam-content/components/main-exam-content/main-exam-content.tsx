@@ -1,33 +1,48 @@
-import { Dispatch, Fragment, SetStateAction, useState } from 'react';
+import { Dispatch, Fragment, RefObject, SetStateAction, useState } from 'react';
 
-import { countWords, markdownToHtml } from '../utils';
+import { countWords, markdownToHtml } from '../../exam-content.utils';
 import { QUESTION_TYPE } from '@/common/constant';
 
+import { DataContentType } from '../../exam-content.model';
+import { AnswerInputRef } from '../answer-input/answer-input.model';
+
 import ListeningChooseAnswer from '../part-item/listening/choose-answer';
+import ListeningChooseTwoAnswer from '../part-item/listening/choose-two-answer';
+import AnswerInput from '../answer-input/answer-input';
+
+import './main-exam-content.scss';
 
 type Props = {
-  isListening: boolean;
-  isReading: boolean;
+  isListening?: boolean;
+  isReading?: boolean;
   listQuestionTypeInPart: string[];
   leftContent: string[];
-  listQuestionInPart: any[];
-  partActive: number;
-  setListQuestion: Dispatch<SetStateAction<ListQuestionType[]>>;
-  onChangeValue: (questionId: number, answer: string) => void;
+  listQuestionInPart: DataContentType[];
+  answerInputRef: RefObject<AnswerInputRef>;
+  questionActive: number;
+  setQuestionActive: Dispatch<SetStateAction<number>>;
+  onChangeCheckBoxValue: (questionId: number, answer: string) => void;
+  onChangeInputValue: (event: React.ChangeEvent<HTMLInputElement>, questionId: number) => void;
+  onChangeTwoValue: (questionSubId: number, answer: string) => void;
+  onChangeAnswerWriting: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onClickQuestionInput: (questionId: number) => void;
 };
 
-const ExamContent = ({
+const MainExamContent = ({
   isListening,
   isReading,
   listQuestionTypeInPart,
   leftContent,
   listQuestionInPart,
-  partActive,
-  setListQuestion,
-  onChangeValue,
+  answerInputRef,
+  questionActive,
+  setQuestionActive,
+  onChangeCheckBoxValue,
+  onChangeInputValue,
+  onChangeTwoValue,
+  onChangeAnswerWriting,
+  onClickQuestionInput,
 }: Props) => {
-  const [questionActive, setQuestionActive] = useState<number>(1);
-
   const renderContent = (type: string, numberOrder: number) => {
     switch (type) {
       case QUESTION_TYPE.LISTENING_CHOOSE_ANSWER:
@@ -37,7 +52,30 @@ const ExamContent = ({
             listQuestion={listQuestionInPart}
             questionActive={questionActive}
             setQuestionActive={setQuestionActive}
-            onChangeValue={onChangeValue}
+            onChangeValue={onChangeCheckBoxValue}
+          />
+        );
+
+      case QUESTION_TYPE.CHOOSE_TWO_ANSWER_LISTENING:
+        return (
+          <ListeningChooseTwoAnswer
+            numberOrder={numberOrder}
+            listQuestion={listQuestionInPart}
+            questionActive={questionActive}
+            setQuestionActive={setQuestionActive}
+            onChangeTwoValue={onChangeTwoValue}
+          />
+        );
+
+      case QUESTION_TYPE.ANSWER_PARAGRAPH_LISTENING:
+        return (
+          <AnswerInput
+            ref={answerInputRef}
+            numberOrder={numberOrder}
+            listQuestion={listQuestionInPart}
+            questionActive={questionActive}
+            onChangeValue={onChangeInputValue}
+            onClickQuestionInput={onClickQuestionInput}
           />
         );
 
@@ -46,30 +84,17 @@ const ExamContent = ({
     }
   };
 
-  const handleChangeAnswerWriting = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setListQuestion((prev) => {
-      const newData = [...prev];
-      newData[partActive - 1].value = event.target.value;
-      if (event.target.value) {
-        newData[partActive - 1].isAnswer = true;
-      } else {
-        newData[partActive - 1].isAnswer = false;
-      }
-      return newData;
-    });
-  };
-
   return (
     <div
-      className={`'exam-content-container' ${
+      className={`exam-content-container ${
         isListening ? 'listening-container' : 'content-container'
       }`}
       style={isListening ? { overflow: 'auto' } : {}}
     >
       {isListening ? (
         <div className='listening-content'>
-          {listQuestionTypeInPart.length ? (
-            listQuestionTypeInPart.map((item, index) => (
+          {listQuestionTypeInPart?.length ? (
+            listQuestionTypeInPart?.map((item, index) => (
               <Fragment key={index}>{renderContent(item, index + 1)}</Fragment>
             ))
           ) : (
@@ -111,7 +136,7 @@ const ExamContent = ({
                   spellCheck='false'
                   autoComplete='off'
                   value={listQuestionInPart[0]?.value}
-                  onChange={handleChangeAnswerWriting}
+                  onChange={onChangeAnswerWriting}
                 />
                 <span>
                   Word count:
@@ -126,4 +151,4 @@ const ExamContent = ({
   );
 };
 
-export default ExamContent;
+export default MainExamContent;

@@ -2,7 +2,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   sassOptions: {
-    includePaths: ['./src'],
+    includePaths: ['./src', './public'],
     prependData: "@import '@/scss/variables';",
   },
   images: {

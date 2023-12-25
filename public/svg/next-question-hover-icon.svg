@@ -4,10 +4,10 @@
         <style>.cls-1{fill:url(#linear-gradient);}</style>
         <linearGradient id="linear-gradient" x1="8" y1="2.14" x2="24" y2="29.86"
             gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#0096d6" />
-            <stop offset="0.23" stop-color="#0682be" />
-            <stop offset="0.75" stop-color="#125a8e" />
-            <stop offset="1" stop-color="#174a7c" />
+            <stop offset="0" stop-color="#ffcf00" />
+            <stop offset="0.23" stop-color="#ffcf00" />
+            <stop offset="0.75" stop-color="#ffcf00" />
+            <stop offset="1" stop-color="#ffcf00" />
         </linearGradient>
     </defs>
     <title>Asset 152</title>

@@ -20,10 +20,10 @@
     width: 60vw;
     max-width: 600px;
     max-height: 80vh;
-    background: $backgroud-color-primary;
+    background: $background-color-primary;
     z-index: 10;
     border-radius: $border-radius-normal;
-    box-shadow: 0px 0px 8px $shadow;
+    box-shadow: $box-shadow-primary;
     padding-bottom: 36px;
 
     .modal-header {
@@ -37,8 +37,8 @@
       border-top-right-radius: 4px;
 
       .title-header {
-        color: $color-text-white;
-        font-size: $font-size-text-16;
+        color: $color-white;
+        font-size: $fs-16;
         font-weight: $font-weight-bold;
         margin: 0;
       }
@@ -48,7 +48,7 @@
       padding: 0 40px 16px;
       margin: 15px 0;
       font-size: 16px;
-      color: $color-text-black;
+      color: $color-dark;
 
       .mt-16 {
         margin-top: 16px;
@@ -65,12 +65,12 @@
         background-origin: border-box;
         background-clip: padding-box, padding-box, border-box;
         padding: 0 12px 0 56px;
-        box-shadow: 0 0 4px 0 $shadow;
+        box-shadow: $box-shadow-primary;
         font-weight: bold;
-        font-size: $font-size-text-16;
-        border: 1px solid $corlor-light-dark;
+        font-size: $fs-16;
+        border: 1px solid $color-primary;
         border-radius: $border-radius-normal;
-        color: $primary;
+        color: $color-primary;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -80,9 +80,9 @@
         cursor: pointer;
 
         &:hover {
-          background-image: none, linear-gradient($light-light, $light-light),
-            linear-gradient(135deg, $secondary 0%, $primary 100%);
-          box-shadow: 0 0 32px 0 $shadow;
+          background-image: none, linear-gradient($color-white, $color-white),
+            linear-gradient(135deg, $background-secondary 0%, $primary 100%);
+          box-shadow: $box-shadow-primary;
         }
       }
     }
