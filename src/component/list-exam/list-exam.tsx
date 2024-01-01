@@ -23,6 +23,7 @@ const ListExam = () => {
           <Button text={item.title} onClick={() => handleToExam(item.title)} />
         </div>
       ))}
+      <Button text='RESET EXAM' onClick={() => {}} />
     </div>
   );
 };

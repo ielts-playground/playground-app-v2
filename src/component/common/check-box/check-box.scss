@@ -34,7 +34,7 @@
   box-shadow: $box-shadow-primary;
 }
 .checkbox-container input:checked ~ .checkmark {
-  background-color: #2196f3;
+  background-color: $background-primary;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */

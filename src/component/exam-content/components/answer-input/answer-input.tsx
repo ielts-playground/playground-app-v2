@@ -29,14 +29,11 @@ const AnswerInput = ({
     const allInputRefs = getAllInputRefs();
     const inputActive = allInputRefs?.[`${questionActive}`];
     inputActive?.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [questionActive]);
 
   const listQuestionTransform = useMemo(
-    () =>
-      listQuestion.filter(
-        (item: any) =>
-          item.type === QUESTION_TYPE.ANSWER_PARAGRAPH_LISTENING && item.numberOrder === numberOrder
-      ),
+    () => listQuestion.filter((item: any) => item.numberOrder === numberOrder),
     [listQuestion, numberOrder]
   );
 

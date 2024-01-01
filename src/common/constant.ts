@@ -16,9 +16,12 @@ export const QUESTION_TYPE = {
 };
 
 export const LIST_ROUTER = {
+  LOGIN: 'login',
   LISTENING: 'listening',
   READING: 'reading',
   WRITING: 'writing',
   LIST_EXAM: 'list-exam',
   THANKS: 'thanks',
 };
+
+export const LIST_ROUTER_NOT_SUPPORT_MOBILE = ['listening', 'reading', 'writing'];

@@ -1,7 +1,6 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { DataContentType, NumericalOrder, TypeQuestionType } from './exam-content.model';
-import { AnswerInputRef } from './components/answer-input/answer-input.model';
 
 import PartDescription from './components/part-description/part-description';
 import MainExamContent from './components/main-exam-content/main-exam-content';
@@ -38,8 +37,6 @@ const ExamContentContainer = ({
   const [leftContent, setLeftContent] = useState<string[]>([]);
 
   const [isReview, setIsReview] = useState<boolean>(false);
-
-  const answerInputRef = useRef<AnswerInputRef>(null);
 
   useEffect(() => {
     let numericalOrder = { first: 0, last: 0 };
@@ -163,15 +160,7 @@ const ExamContentContainer = ({
     });
   };
 
-  const handleSetQuestionActive = (
-    questionId: number,
-    questionSubId: number,
-    partActiveBar: number
-  ) => {
-    // const allInputRefs = answerInputRef.current?.getAllInputRefs();
-    // const inputActive = allInputRefs?.[`${questionId}`];
-    // inputActive?.current?.focus();
-
+  const handleSetQuestionActive = (questionSubId: number, partActiveBar: number) => {
     const question = listQuestion[questionSubId - 1];
     setIsReview(question.isReview);
     setQuestionActive(questionSubId);
@@ -220,7 +209,6 @@ const ExamContentContainer = ({
         listQuestionTypeInPart={listQuestionTypeInPart}
         leftContent={leftContent}
         listQuestionInPart={listQuestionInPart}
-        answerInputRef={answerInputRef}
         questionActive={questionActive}
         setQuestionActive={setQuestionActive}
         onChangeCheckBoxValue={handleChangeCheckBoxValue}

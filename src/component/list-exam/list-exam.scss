@@ -57,3 +57,11 @@
     // }
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .list-exam__container {
+    .part-item {
+      width: 600px;
+    }
+  }
+}

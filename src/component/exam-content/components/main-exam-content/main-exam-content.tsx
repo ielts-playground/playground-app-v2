@@ -11,6 +11,8 @@ import ListeningChooseTwoAnswer from '../part-item/listening/choose-two-answer';
 import AnswerInput from '../answer-input/answer-input';
 
 import './main-exam-content.scss';
+import ChooseOneAnswerReading from '../part-item/reading/choose-answer';
+import ChooseTwoAnswerReading from '../part-item/reading/choose-two-answer';
 
 type Props = {
   isListening?: boolean;
@@ -18,7 +20,6 @@ type Props = {
   listQuestionTypeInPart: string[];
   leftContent: string[];
   listQuestionInPart: DataContentType[];
-  answerInputRef: RefObject<AnswerInputRef>;
   questionActive: number;
   setQuestionActive: Dispatch<SetStateAction<number>>;
   onChangeCheckBoxValue: (questionId: number, answer: string) => void;
@@ -34,7 +35,6 @@ const MainExamContent = ({
   listQuestionTypeInPart,
   leftContent,
   listQuestionInPart,
-  answerInputRef,
   questionActive,
   setQuestionActive,
   onChangeCheckBoxValue,
@@ -70,12 +70,44 @@ const MainExamContent = ({
       case QUESTION_TYPE.ANSWER_PARAGRAPH_LISTENING:
         return (
           <AnswerInput
-            ref={answerInputRef}
             numberOrder={numberOrder}
             listQuestion={listQuestionInPart}
             questionActive={questionActive}
             onChangeValue={onChangeInputValue}
             onClickQuestionInput={onClickQuestionInput}
+          />
+        );
+
+      case QUESTION_TYPE.ANSWER_PARAGRAPH:
+        return (
+          <AnswerInput
+            numberOrder={numberOrder}
+            questionActive={questionActive}
+            listQuestion={listQuestionInPart}
+            onChangeValue={onChangeInputValue}
+            onClickQuestionInput={onClickQuestionInput}
+          />
+        );
+
+      case QUESTION_TYPE.CHOOSE_ANSWER:
+        return (
+          <ChooseOneAnswerReading
+            numberOrder={numberOrder}
+            listQuestion={listQuestionInPart}
+            questionActive={questionActive}
+            setQuestionActive={setQuestionActive}
+            onChangeValue={onChangeCheckBoxValue}
+          />
+        );
+
+      case QUESTION_TYPE.CHOOSE_TWO_ANSWER:
+        return (
+          <ChooseTwoAnswerReading
+            numberOrder={numberOrder}
+            listQuestion={listQuestionInPart}
+            questionActive={questionActive}
+            setQuestionActive={setQuestionActive}
+            onChangeTwoValue={onChangeTwoValue}
           />
         );
 
@@ -105,7 +137,7 @@ const MainExamContent = ({
         <>
           <div className='topic-container left-topic'>
             <div className='topic-content'>
-              {leftContent.map((item, index) => (
+              {leftContent?.map((item, index) => (
                 <span
                   key={index}
                   dangerouslySetInnerHTML={{
@@ -121,8 +153,8 @@ const MainExamContent = ({
                 {listQuestionTypeInPart?.length ? (
                   listQuestionTypeInPart.map((item, index) => (
                     <Fragment key={index}>
-                      {index > 0 && <hr />}
                       {renderContent(item, index + 1)}
+                      {index > 0 && <hr />}
                     </Fragment>
                   ))
                 ) : (

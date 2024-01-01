@@ -40,10 +40,10 @@ export type DisplayQuestionDataResponse = {
 
 export type TestExamResponse = {
   id: number;
-  resourceId: number;
   submitId: number;
   displayQuestionDataResponse: DisplayQuestionDataResponse;
   listTypeQuestion: TypeQuestionType;
+  resourceId?: number | null;
 };
 
 export type DataContentType = {
