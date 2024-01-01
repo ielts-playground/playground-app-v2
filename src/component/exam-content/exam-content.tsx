@@ -10,9 +10,9 @@ type Props = {
   isListening?: boolean;
   isReading?: boolean;
   isWriting?: boolean;
-  listQuestion: DataContentType[];
   listTypeQuestion?: TypeQuestionType;
   contentLeft?: string[][];
+  listQuestion: DataContentType[];
   setListQuestion: Dispatch<SetStateAction<DataContentType[]>>;
 };
 
@@ -20,9 +20,9 @@ const ExamContentContainer = ({
   isListening,
   isReading,
   isWriting,
-  listQuestion,
   listTypeQuestion,
   contentLeft,
+  listQuestion,
   setListQuestion,
 }: Props) => {
   const [questionActive, setQuestionActive] = useState<number>(1);

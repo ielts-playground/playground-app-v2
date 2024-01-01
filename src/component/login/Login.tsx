@@ -17,7 +17,7 @@ const Login = ({ onClickLogin }: Props) => {
   const validate = Yup.object({
     email: Yup.string().matches(EMAIL_REG_EXP, 'Email is invalid').required('Email is required'),
     password: Yup.string()
-      .min(8, 'Password must be at least 8 charaters')
+      .min(8, 'Password must be at least 8 characters')
       .required('Password is required'),
   });
 

@@ -7,6 +7,7 @@ import { DataContentType, TypeQuestionType } from '@/component/exam-content/exam
 
 import Loading from '@/component/common/loading/loading';
 import useBreakpoint from '@/hooks/use-break-point';
+import { getListeningExam } from '@/services/exam';
 
 const ListeningPage = () => {
   const breakpoint = useBreakpoint();
@@ -16,7 +17,6 @@ const ListeningPage = () => {
 
   const [listQuestion, setListQuestion] = useState<DataContentType[]>([]);
   const [listTypeQuestion, setListTypeQuestion] = useState<TypeQuestionType>({});
-
   useEffect(() => {
     function makeAPICall() {
       setIsLoading(true);
@@ -27,27 +27,26 @@ const ListeningPage = () => {
       }, 1000);
     }
 
-    // const getData = async () => {
-    //   try {
-    //     setIsLoading(true);
-    //     const response = await getDataListeningApi(token);
-    //     if (response) {
-    //       const dataListening = convertData(response.data);
-    //       setListQuestion(dataListening.dataContent);
-    //       setListTypeQuestion(dataListening.listTypeQuestion);
-    //       setIdSubmit(response.data.submitId);
-    //       setIdExam(response.data.id);
-    //       setIdAudio(response.data.resourceId);
-    //       setIsLoading(false);
-    //     }
-    //   } catch (error) {
-    //     console.log('error', error);
-    //     setIsLoading(false);
-    //   }
-    // };
+    const getData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await getListeningExam();
+        setListQuestion(transformDataExam(response).dataContent);
+        setListTypeQuestion(transformDataExam(response).listTypeQuestion);
+        localStorage.setItem('LISTENING', JSON.stringify(response));
+        setIsLoading(false);
+      } catch (error) {
+        console.log('error', error);
+        setIsLoading(false);
+      }
+    };
 
-    makeAPICall();
+    getData();
     // makeAPICall();
+    window.addEventListener('beforeunload', getData);
+    return () => {
+      window.removeEventListener('beforeunload', getData);
+    };
   }, []);
 
   return (

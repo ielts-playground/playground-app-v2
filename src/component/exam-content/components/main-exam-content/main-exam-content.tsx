@@ -171,7 +171,7 @@ const MainExamContent = ({
                   onChange={onChangeAnswerWriting}
                 />
                 <span>
-                  Word count:
+                  Word count:{' '}
                   {listQuestionInPart[0]?.value && countWords(listQuestionInPart[0]?.value)}
                 </span>
               </div>

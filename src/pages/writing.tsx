@@ -18,7 +18,7 @@ const WritingPage = () => {
     function makeAPICall() {
       setIsLoading(true);
       setTimeout(() => {
-        const dataTransform = transformDataExam(DATA_MOCK_WRITING);
+        const dataTransform = transformDataExam(DATA_MOCK_WRITING, true);
         setListQuestion(dataTransform.dataContent);
         setContentLeft(dataTransform.contentLeft);
         setIsLoading(false);

@@ -8,10 +8,10 @@ const axiosInstance = axios.create({
   timeout: 30000,
 });
 
-axios.interceptors.request.use(
+axiosInstance.interceptors.request.use(
   (config) => {
     if (!config.headers.Authorization) {
-      const token = JSON.parse(localStorage.getItem('token') || '');
+      const token = localStorage.getItem('TOKEN');
 
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
