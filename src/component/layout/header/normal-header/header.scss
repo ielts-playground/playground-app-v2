@@ -33,6 +33,17 @@ $header-bg: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  .right-header-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .logout-button {
+    line-height: 24px;
+    font-size: $fs-16;
+    margin-left: 10px;
+  }
 }
 
 /* Styling of other elements */

@@ -38,7 +38,7 @@ const ListeningChooseTwoAnswer = ({
         <div className='one-question-container'>
           <div
             id={`question${question.id}`}
-            className={`'question' ${questionActive === question.id ? 'question__active' : ''}`}
+            className={`question ${questionActive === question.id ? 'question__active' : ''}`}
             onClick={() => setQuestionActive(question.id)}
           >
             <span className='question_number'>{question.id + ' + ' + `${question.id + 1}`}</span>

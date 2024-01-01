@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { PATH_NAME_AUTH } from '@/constant/auth';
+import { PATHS_NAME_AUTH } from '@/constant/auth';
 
 type Props = {
   onLogOut: () => void;
@@ -20,16 +20,13 @@ const AuthVerify = ({ onLogOut, children }: Props) => {
     let token = localStorage.getItem('TOKEN');
     if (token) {
       if (!isTokenExpired(token)) {
-        if (
-          pathname === PATH_NAME_AUTH.LOGIN ||
-          pathname === PATH_NAME_AUTH.REGISTER ||
-          pathname === PATH_NAME_AUTH.VERIFY
-        ) {
+        if (pathname && PATHS_NAME_AUTH.includes(pathname)) {
           router.push('/home');
         }
       }
-      // user = JSON.parse(token);
     } else {
+      ((pathname && !PATHS_NAME_AUTH.includes(pathname)) || pathname === '/verify') &&
+        router.push('/');
     }
   }, [pathname, router]);
 

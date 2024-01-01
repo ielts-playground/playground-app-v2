@@ -32,6 +32,7 @@ const VerifyPage = () => {
       router.push('/home');
       notify('success', 'Verify successfully!');
       localStorage.setItem('TOKEN', res.data.token);
+      localStorage.setItem('USER', JSON.stringify(res.data.user));
     } else {
       setIsVerifyError(true);
       notify('error', 'Wrong code!');

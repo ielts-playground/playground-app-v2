@@ -6,10 +6,10 @@
   outline: none;
   border: 1px solid $color-secondary;
   overflow: hidden;
-  cursor: pointer;
   background-color: $background-button;
   border-radius: 6px;
-  font-size: $fs-24;
+  font-size: $fs-18;
+  cursor: pointer;
 
   &::after {
     content: '';

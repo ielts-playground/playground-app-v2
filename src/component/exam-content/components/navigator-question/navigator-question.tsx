@@ -7,7 +7,7 @@ type Props = {
   listQuestion: DataContentType[];
   questionActive: any;
   isReview: boolean;
-  onSetQuestionActive: (questionId: number, questionSubId: number, partActiveBar: number) => void;
+  onSetQuestionActive: (questionSubId: number, partActiveBar: number) => void;
   onChangeReviewQuestion: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSelectPrevOrNextQuestion: (questionId: number) => void;
 };
@@ -57,9 +57,7 @@ const NavigatorQuestion = ({
                       }  ${question.isAnswer ? 'question__answered' : ''} ${
                         question.isReview ? 'question__review  ' : ''
                       }`}
-                      onClick={() =>
-                        onSetQuestionActive(question.id, question.subId, question.part)
-                      }
+                      onClick={() => onSetQuestionActive(question.subId, question.part)}
                     >
                       <span>{question.id}</span>
                     </button>

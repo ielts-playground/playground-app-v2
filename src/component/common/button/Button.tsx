@@ -7,6 +7,8 @@ type Props = {
     width?: string;
     height?: string;
     fontSize?: string;
+    margin?: string;
+    lineHeight?: string;
   };
   type?: 'button' | 'submit' | 'reset';
   onClick?: () => void;

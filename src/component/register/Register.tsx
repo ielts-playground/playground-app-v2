@@ -7,7 +7,7 @@ import { RegisterType } from '@/models/auth';
 import { EMAIL_REG_EXP, PHONE_REG_EXP } from '@/constant/auth';
 
 import Button from '../common/button/button';
-import InputField from '../common/input/input-field';
+import InputField from '../exam-content/components/input/input-field';
 
 import rocketImg from '../../../public/assets/rocket.png';
 import './register.scss';

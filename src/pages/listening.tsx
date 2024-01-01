@@ -1,21 +1,28 @@
 import { useEffect, useState } from 'react';
 
 import ExamContentContainer from '@/component/exam-content/exam-content';
-import { DATA_MOCK_TRANSFORM_LISTENING } from '@/component/exam-content/exam-content.constants';
-import Loading from '@/component/common/loading/loading';
+import { DATA_MOCK_LISTENING } from '@/component/exam-content/exam-content.constants';
+import { transformDataExam } from '@/component/exam-content/exam-content.utils';
+import { DataContentType, TypeQuestionType } from '@/component/exam-content/exam-content.model';
 
-const Reading = () => {
+import Loading from '@/component/common/loading/loading';
+import useBreakpoint from '@/hooks/use-break-point';
+
+const ListeningPage = () => {
+  const breakpoint = useBreakpoint();
+  // console.log(breakpoint);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [listQuestion, setListQuestion] = useState<any>([]);
-  const [listTypeQuestion, setListTypeQuestion] = useState<any>({});
+  const [listQuestion, setListQuestion] = useState<DataContentType[]>([]);
+  const [listTypeQuestion, setListTypeQuestion] = useState<TypeQuestionType>({});
 
   useEffect(() => {
     function makeAPICall() {
       setIsLoading(true);
       setTimeout(() => {
-        setListQuestion(DATA_MOCK_TRANSFORM_LISTENING.dataContent);
-        setListTypeQuestion(DATA_MOCK_TRANSFORM_LISTENING.listTypeQuestion);
+        setListQuestion(transformDataExam(DATA_MOCK_LISTENING).dataContent);
+        setListTypeQuestion(transformDataExam(DATA_MOCK_LISTENING).listTypeQuestion);
         setIsLoading(false);
       }, 1000);
     }
@@ -49,13 +56,13 @@ const Reading = () => {
       <div className='page-container'>
         <ExamContentContainer
           isListening
+          listTypeQuestion={listTypeQuestion}
           listQuestion={listQuestion}
           setListQuestion={setListQuestion}
-          listTypeQuestion={listTypeQuestion}
         />
       </div>
     </>
   );
 };
 
-export default Reading;
+export default ListeningPage;

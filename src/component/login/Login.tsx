@@ -5,10 +5,9 @@ import * as Yup from 'yup';
 import { LoginType } from '@/models/auth';
 import { EMAIL_REG_EXP } from '@/constant/auth';
 
-import Button from '../common/button/button';
-import InputField from '../common/input/input-field';
-
 import './login.scss';
+import InputField from '../exam-content/components/input/input-field';
+import Button from '../common/button/button';
 
 type Props = {
   onClickLogin: (payload: LoginType) => void;

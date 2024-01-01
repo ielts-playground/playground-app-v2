@@ -27,7 +27,7 @@ export const countWords = (str: string) => {
   return arr.filter((word) => word !== '').length;
 };
 
-export const convertData = (dataResponse: TestExamResponse, isWriting = false) => {
+export const transformDataExam = (dataResponse: TestExamResponse, isWriting = false) => {
   let dataContent: DataContentType[] = [];
   let contentLeft: string[][] = [];
   const dataDisplayQuestionDataResponse = dataResponse.displayQuestionDataResponse;
