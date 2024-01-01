@@ -12,13 +12,15 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
   const examState = useSelector(selectExamState);
-  const { isInExam } = examState;
+  const { isInExam, headerExam } = examState;
+  console.log('🚀 ~ file: Layout.tsx:16 ~ Layout ~ headerExam:', headerExam);
 
   const breakpoint = useBreakpoint();
 
   return (
     <>
-      <Header />
+      {headerExam}
+      {/* <Header /> */}
       {breakpoint === DEFAULT_SCREEN.MOBILE ? (
         <></>
       ) : (
