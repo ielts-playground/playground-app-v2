@@ -13,6 +13,10 @@ const makeStore = () =>
       [examSlice.name]: examSlice.reducer,
     },
     devTools: true,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   });
 
 export type AppStore = ReturnType<typeof makeStore>;

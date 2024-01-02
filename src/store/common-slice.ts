@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { AppState } from './store';
 import { HYDRATE } from 'next-redux-wrapper';
 
-export interface CommonState {
+export type CommonState = {
   isLoading: boolean;
-}
+};
 
 const initialState: CommonState = {
   isLoading: false,

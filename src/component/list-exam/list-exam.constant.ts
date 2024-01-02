@@ -1,4 +1,4 @@
-import { ListExamType } from './model';
+import { ListExamType } from './list-exam.model';
 
 export const LIST_EXAMS: ListExamType[] = [
   {
@@ -11,3 +11,9 @@ export const LIST_EXAMS: ListExamType[] = [
     title: 'writing',
   },
 ];
+
+export const EXAM_TIME = {
+  LISTENING: 1919,
+  READING: 3599,
+  WRITING: 3599,
+};

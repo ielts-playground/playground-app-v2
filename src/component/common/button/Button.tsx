@@ -11,11 +11,18 @@ type Props = {
     lineHeight?: string;
   };
   type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
   onClick?: () => void;
 };
-const Button = ({ text, className, style, type, onClick }: Props) => {
+const Button = ({ text, className, style, type, disabled, onClick }: Props) => {
   return (
-    <button className={`button-common ${className}`} style={style} type={type} onClick={onClick}>
+    <button
+      className={`button-common ${disabled ? 'button-disable' : 'button-enable'} ${className}`}
+      style={style}
+      type={type}
+      disabled={disabled}
+      onClick={() => (disabled ? null : onClick?.())}
+    >
       {text}
     </button>
   );

@@ -3,11 +3,11 @@ import { AppState } from './store';
 import { HYDRATE } from 'next-redux-wrapper';
 import { AuthResponse } from '@/models/auth';
 
-export interface AuthState {
+export type AuthState = {
   typeRegister: 'FREE' | 'PREMIUM';
   emailVerify: string;
   information: AuthResponse | undefined;
-}
+};
 
 const initialState: AuthState = {
   typeRegister: 'FREE',

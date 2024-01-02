@@ -52,7 +52,7 @@ const Verify = ({ emailVerify, isVerifyError, onSubmitVerify }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listValueInCodeVerify]);
 
-  const handleChange = (e: { target: any }, indexChange: number) => {
+  const handleChange = (e: any, indexChange: number) => {
     const input = e.target;
 
     setListValueInCodeVerify((prev) => {
@@ -105,13 +105,13 @@ const Verify = ({ emailVerify, isVerifyError, onSubmitVerify }: Props) => {
     }
   };
 
-  const handleArrowLeft = (e: { target: { previousElementSibling: any } }) => {
+  const handleArrowLeft = (e: any) => {
     const previousInput = e.target.previousElementSibling;
     if (!previousInput) return;
     previousInput.focus();
   };
 
-  const handleArrowRight = (e: { target: { nextElementSibling: any } }) => {
+  const handleArrowRight = (e: any) => {
     const nextInput = e.target.nextElementSibling;
     if (!nextInput) return;
     nextInput.focus();
