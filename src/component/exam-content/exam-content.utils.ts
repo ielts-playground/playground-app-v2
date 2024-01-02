@@ -27,10 +27,10 @@ export const countWords = (str: string) => {
   return arr.filter((word) => word !== '').length;
 };
 
-export const transformDataExam = (dataResponse: TestExamResponse, isWriting = false) => {
+export const transformDataExam = (dataResponse?: TestExamResponse, isWriting = false) => {
   let dataContent: DataContentType[] = [];
   let contentLeft: string[][] = [];
-  const dataDisplayQuestionDataResponse = dataResponse.displayQuestionDataResponse;
+  const dataDisplayQuestionDataResponse = dataResponse?.displayQuestionDataResponse || {};
 
   const dataContentTransform: DataContentType[][] = [];
 
@@ -54,11 +54,11 @@ export const transformDataExam = (dataResponse: TestExamResponse, isWriting = fa
     );
     dataContentTransform.push(dataContentItem);
 
-    const contentLeftTransform = dataDisplayQuestionDataResponse[`${index}`].leftContent.map(
+    const contentLeftTransform = dataDisplayQuestionDataResponse?.[`${index}`].leftContent.map(
       (item) => item.text || ''
     );
 
-    contentLeft.push(contentLeftTransform);
+    contentLeft.push(contentLeftTransform || []);
   }
 
   dataContent = dataContentTransform.flat(1);
@@ -66,7 +66,7 @@ export const transformDataExam = (dataResponse: TestExamResponse, isWriting = fa
     dataContent = DATA_WRITING_CONTENT;
   }
 
-  const listTypeQuestion = dataResponse.listTypeQuestion;
+  const listTypeQuestion = dataResponse?.listTypeQuestion;
   const dataInPart = { dataContent, listTypeQuestion, contentLeft };
   return dataInPart;
 };

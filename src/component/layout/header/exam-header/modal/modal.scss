@@ -20,9 +20,9 @@
     width: 60vw;
     max-width: 600px;
     max-height: 80vh;
-    background: $background-color-primary;
+    background: $background-primary;
     z-index: 10;
-    border-radius: $border-radius-normal;
+    border-radius: 4px;
     box-shadow: $box-shadow-primary;
     padding-bottom: 36px;
 
@@ -37,9 +37,8 @@
       border-top-right-radius: 4px;
 
       .title-header {
-        color: $color-white;
-        font-size: $fs-16;
-        font-weight: $font-weight-bold;
+        font-size: $fs-20;
+        font-weight: 700;
         margin: 0;
       }
     }
@@ -47,86 +46,13 @@
     .modal-content {
       padding: 0 40px 16px;
       margin: 15px 0;
-      font-size: 16px;
-      color: $color-dark;
+      font-size: $fs-18;
+      color: $color-secondary;
 
       .mt-16 {
         margin-top: 16px;
         margin-bottom: 0;
       }
     }
-
-    .modal-actions {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .button-action {
-        background-origin: border-box;
-        background-clip: padding-box, padding-box, border-box;
-        padding: 0 12px 0 56px;
-        box-shadow: $box-shadow-primary;
-        font-weight: bold;
-        font-size: $fs-16;
-        border: 1px solid $color-primary;
-        border-radius: $border-radius-normal;
-        color: $color-primary;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 150px;
-        min-height: 44px;
-        padding: 12px 0;
-        cursor: pointer;
-
-        &:hover {
-          background-image: none, linear-gradient($color-white, $color-white),
-            linear-gradient(135deg, $background-secondary 0%, $primary 100%);
-          box-shadow: $box-shadow-primary;
-        }
-      }
-    }
-
-    .mr-50 {
-      margin-right: 50px;
-    }
   }
-}
-
-.deleteBtn {
-  margin-top: 10px;
-  cursor: pointer;
-  font-weight: 500;
-  padding: 11px 28px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  border: none;
-  color: #fff;
-  background: #ff3e4e;
-  transition: all 0.25s ease;
-}
-
-.deleteBtn:hover {
-  box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
-  transform: translateY(-5px);
-  background: #ff3e4e;
-}
-
-.cancelBtn {
-  margin-top: 10px;
-  cursor: pointer;
-  font-weight: 500;
-  padding: 11px 28px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  border: none;
-  color: #2c3e50;
-  background: #fcfcfc;
-  transition: all 0.25s ease;
-}
-
-.cancelBtn:hover {
-  box-shadow: none;
-  transform: none;
-  background: whitesmoke;
 }

@@ -10,7 +10,9 @@
   border-radius: 6px;
   font-size: $fs-18;
   cursor: pointer;
+}
 
+.button-enable {
   &::after {
     content: '';
     z-index: -1;
@@ -27,5 +29,15 @@
     transform: translate3d(200%, 0, 0) rotate(35deg);
     background-color: $color-secondary;
     opacity: 0.8;
+  }
+}
+
+.button-disable {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+
+  &:hover {
+    cursor: default;
   }
 }

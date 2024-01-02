@@ -9,11 +9,11 @@ import './header.scss';
 
 export const Header = () => {
   const router = useRouter();
-  const [userInfo, setUserInfo] = useState<UserInfoUser | undefined>(undefined);
+  const [userInfo, setUserInfo] = useState<UserInfoUser | null>(null);
 
   useEffect(() => {
-    // const user = JSON.parse(localStorage.getItem('USER') || '{}');
-    // setUserInfo(user);
+    const user = JSON.parse(localStorage.getItem('USER') || '{}');
+    setUserInfo(user);
   }, []);
 
   const handleLogout = () => {

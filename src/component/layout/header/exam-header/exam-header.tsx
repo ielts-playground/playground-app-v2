@@ -1,11 +1,18 @@
 import { useRouter } from 'next/router';
+import Image from 'next/image';
+
+import { useDispatch } from 'react-redux';
+import { donePart } from '@/store/exam-slice';
+
 import { useEffect, useMemo, useState } from 'react';
 import { formatTime } from './utils';
 
-import TimeExam from '~/svg/time-exam.svg';
-import ListenExam from '~/public/svg/listen-exam.svg';
+import timeExamSvg from '../../../../../public/svg/time-exam-icon.svg';
+import listenExamSvg from '../../../../../public/svg/listen-exam-icon.svg';
 import Button from '@/component/common/button/button';
 import Modal from './modal/modal';
+
+import './exam-header.scss';
 
 type Props = {
   typePart: string;
@@ -17,6 +24,7 @@ type Props = {
 
 const ExamHeader = ({ typePart, isListening, examTime, onSubmitExam, setVolume }: Props) => {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [timer, setTimer] = useState<number>(examTime);
   const [isHoverTime, setIsHoverTime] = useState<boolean>(false);
@@ -24,7 +32,7 @@ const ExamHeader = ({ typePart, isListening, examTime, onSubmitExam, setVolume }
 
   useEffect(() => {
     if (!timer) {
-      // donePart(typePart);
+      dispatch(donePart(typePart));
       onSubmitExam();
       if (typePart === 'writing') {
         router.push('thanks');
@@ -60,15 +68,14 @@ const ExamHeader = ({ typePart, isListening, examTime, onSubmitExam, setVolume }
     <header className='exam-header-container'>
       <div className='info-container'>
         <h4>Logo</h4>
-        <span className='info-user'>Tran Van Bac</span>
       </div>
       <div className='info-container'>
         <div className='icon-size'>
-          <TimeExam />
+          <Image src={timeExamSvg} alt='My SVG' />
         </div>
         {isHoverTime ? (
           <div className={`'time__down' ${timeWarning}`} onMouseLeave={handleMouseLeave}>
-            <span className='time'>{formatTime(timer).minutesAndSeconds}</span>
+            <span className='time'>{formatTime(timer).minutesAndSeconds}</span>{' '}
             <span className='left-text'>left</span>
           </div>
         ) : (
@@ -77,7 +84,7 @@ const ExamHeader = ({ typePart, isListening, examTime, onSubmitExam, setVolume }
             onFocus={() => {}}
             onMouseOver={handleMouseOver}
           >
-            <span className='time'>{formatTime(timer).minutes}</span>
+            <span className='time'>{formatTime(timer).minutes}</span>{' '}
             <span className='left-text'>minutes left</span>
           </div>
         )}
@@ -86,7 +93,7 @@ const ExamHeader = ({ typePart, isListening, examTime, onSubmitExam, setVolume }
         {isListening && (
           <div className='listening-box'>
             <div className='size-icon'>
-              <ListenExam />
+              <Image src={listenExamSvg} alt='My SVG' />
             </div>
             <input
               type='range'

@@ -5,7 +5,7 @@ import './navigator-question.scss';
 
 type Props = {
   listQuestion: DataContentType[];
-  questionActive: any;
+  questionActive: number;
   isReview: boolean;
   onSetQuestionActive: (questionSubId: number, partActiveBar: number) => void;
   onChangeReviewQuestion: (event: React.ChangeEvent<HTMLInputElement>) => void;
