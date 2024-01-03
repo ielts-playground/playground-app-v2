@@ -64,7 +64,7 @@ export const examSlice = createSlice({
       ];
     },
 
-    resetExam(state, action) {
+    setListExam(state, action) {
       state.listExam = action.payload;
     },
   },
@@ -79,6 +79,6 @@ export const examSlice = createSlice({
   },
 });
 
-export const { setIsInExam, setHeaderExam, donePart, resetExam } = examSlice.actions;
+export const { setIsInExam, setHeaderExam, donePart, setListExam } = examSlice.actions;
 
 export const selectExamState = (state: AppState) => state.exam;

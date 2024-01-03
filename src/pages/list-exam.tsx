@@ -5,9 +5,9 @@ import ListExam from '@/component/list-exam/list-exam';
 
 const ListExamPage = () => {
   return (
-    <div>
+    <>
       <ListExam />
-    </div>
+    </>
   );
 };
 
