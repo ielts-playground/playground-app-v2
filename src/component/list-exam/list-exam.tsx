@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
+import { useBeforeunload } from 'react-beforeunload';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { INIT_LIST_EXAM, resetExam, selectExamState } from '@/store/exam-slice';
+import { INIT_LIST_EXAM, setListExam, selectExamState } from '@/store/exam-slice';
 
 import Button from '../common/button/button';
 
@@ -19,7 +20,7 @@ const ListExam = () => {
   };
 
   const handleResetExam = () => {
-    dispatch(resetExam(INIT_LIST_EXAM));
+    dispatch(setListExam(INIT_LIST_EXAM));
   };
 
   return (

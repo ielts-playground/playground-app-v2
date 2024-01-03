@@ -1,5 +1,5 @@
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
-import { useBeforeunload } from 'react-beforeunload';
 
 import { useDispatch } from 'react-redux';
 import { donePart, setHeaderExam } from '@/store/exam-slice';
@@ -11,13 +11,14 @@ import { DataContentType, TypeQuestionType } from '@/component/exam-content/exam
 import { getDataExam, submitExam } from '@/services/exam';
 import { AnswerRequest, ExamRequest } from '@/component/list-exam/list-exam.model';
 import { EXAM_TIME } from '@/component/list-exam/list-exam.constant';
-import { QUESTION_TYPE } from '@/common/constant';
+import { LIST_ROUTER, QUESTION_TYPE } from '@/common/constant';
 
 import Loading from '@/component/common/loading/loading';
 import ExamHeader from '@/component/layout/header/exam-header/exam-header';
 
 const ListeningPage = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const audioRef = useRef<any>(null);
   const listQuestionRef = useRef<DataContentType[]>([]);
@@ -30,15 +31,6 @@ const ListeningPage = () => {
 
   const [idAudio, setIdAudio] = useState<number | undefined | null>(undefined);
   const [volume, setVolume] = useState<string>('50');
-
-  useBeforeunload(() => {
-    localStorage.setItem('LISTENING', JSON.stringify(listQuestion));
-  });
-
-  useEffect(() => {
-    const dataListening = localStorage.getItem('LISTENING');
-    console.log('🚀 ~ file: listening.tsx:41 ~ useEffect ~ dataListening:', dataListening);
-  }, []);
 
   useEffect(() => {
     if (!!audioRef.current) {
@@ -90,12 +82,14 @@ const ListeningPage = () => {
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
-      const response = await getDataExam('');
+      const response = await getDataExam('listening', '');
       if (response) {
         const data = transformDataExam(response);
         setListQuestion(data.dataContent);
         setListTypeQuestion(data.listTypeQuestion);
         setIdAudio(response.resourceId);
+
+        localStorage.setItem('EXAM_ID', String(response.id));
         idSubmitRef.current = response.submitId;
       }
       setIsLoading(false);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { donePart, setHeaderExam } from '@/store/exam-slice';
@@ -11,27 +11,39 @@ import { DataContentType, TypeQuestionType } from '@/component/exam-content/exam
 import Loading from '@/component/common/loading/loading';
 import ExamHeader from '@/component/layout/header/exam-header/exam-header';
 import { EXAM_TIME } from '@/component/list-exam/list-exam.constant';
+import { getDataExam, submitExam } from '@/services/exam';
+import { AnswerRequest, ExamRequest } from '@/component/list-exam/list-exam.model';
 
 const WritingPage = () => {
   const dispatch = useDispatch();
 
+  const listQuestionRef = useRef<DataContentType[]>([]);
+  const idSubmitRef = useRef<number>(0);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [listQuestion, setListQuestion] = useState<DataContentType[]>([]);
-  const [listTypeQuestion, setListTypeQuestion] = useState<TypeQuestionType>({});
+  const [listTypeQuestion, setListTypeQuestion] = useState<TypeQuestionType | undefined>(undefined);
   const [contentLeft, setContentLeft] = useState<string[][]>();
 
+  useEffect(() => {
+    listQuestionRef.current = listQuestion;
+  }, [listQuestion]);
+
   const handleSubmitExam = () => {
-    const request: any = {};
-    listQuestion.forEach((ele: any) => {
+    const request: AnswerRequest = {};
+
+    listQuestionRef.current?.forEach((ele) => {
       request[`${ele.id}`] = ele.value;
     });
-    dispatch(donePart({ currentPart: 'writing' }));
-    const payload = {
+
+    const payload: ExamRequest = {
       answers: request,
       examTestId: 0,
     };
-    // submitPartExam(token, idSubmit, payload);
+
+    submitExam(idSubmitRef.current, payload);
+    dispatch(donePart({ currentPart: 'writing' }));
   };
 
   const examHeader = () => (
@@ -48,17 +60,21 @@ const WritingPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    function makeAPICall() {
+    const getData = async () => {
       setIsLoading(true);
-      setTimeout(() => {
-        const dataTransform = transformDataExam(DATA_MOCK_WRITING, true);
-        setListQuestion(dataTransform.dataContent);
-        setContentLeft(dataTransform.contentLeft);
-        setIsLoading(false);
-      }, 1000);
-    }
+      const examId = localStorage.getItem('EXAM_ID');
+      const response = await getDataExam('writing', Number(examId));
+      if (response) {
+        const data = transformDataExam(response);
+        setListQuestion(data.dataContent);
+        setListTypeQuestion(data.listTypeQuestion);
+        setContentLeft(data.contentLeft);
+        idSubmitRef.current = response.submitId;
+      }
+      setIsLoading(false);
+    };
 
-    makeAPICall();
+    getData();
   }, []);
 
   return (
