@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
-import { useBeforeunload } from 'react-beforeunload';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { INIT_LIST_EXAM, setListExam, selectExamState } from '@/store/exam-slice';
+import { INIT_LIST_EXAM, setListExam, selectExamState, ItemExam } from '@/store/exam-slice';
 
 import Button from '../common/button/button';
 

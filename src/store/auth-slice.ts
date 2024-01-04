@@ -7,12 +7,14 @@ export type AuthState = {
   typeRegister: 'FREE' | 'PREMIUM';
   emailVerify: string;
   information: AuthResponse | undefined;
+  renderHeaderInfo: number;
 };
 
 const initialState: AuthState = {
   typeRegister: 'FREE',
   emailVerify: '',
   information: undefined,
+  renderHeaderInfo: 0,
 };
 
 export const authSlice = createSlice({
@@ -28,6 +30,9 @@ export const authSlice = createSlice({
     setAuthInformation(state, action) {
       state.information = action.payload;
     },
+    setRenderHeaderInfo(state, action) {
+      state.renderHeaderInfo = action.payload;
+    },
   },
 
   extraReducers: {
@@ -40,6 +45,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setTypeRegister, setEmailVerify, setAuthInformation } = authSlice.actions;
+export const { setTypeRegister, setEmailVerify, setAuthInformation, setRenderHeaderInfo } =
+  authSlice.actions;
 
 export const selectAuthState = (state: AppState) => state.auth;

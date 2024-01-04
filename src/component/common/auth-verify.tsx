@@ -4,7 +4,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { PATHS_NAME_AUTH } from '@/constant/auth';
 
 type Props = {
-  onLogOut: () => void;
   children: ReactNode;
 };
 
@@ -12,7 +11,7 @@ const isTokenExpired = (token: string) => {
   return Date.now() >= JSON.parse(atob(token.split('.')[1])).exp * 1000;
 };
 
-const AuthVerify = ({ onLogOut, children }: Props) => {
+const AuthVerify = ({ children }: Props) => {
   const pathname = usePathname();
   const router = useRouter();
 

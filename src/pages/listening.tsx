@@ -11,7 +11,7 @@ import { DataContentType, TypeQuestionType } from '@/component/exam-content/exam
 import { getDataExam, submitExam } from '@/services/exam';
 import { AnswerRequest, ExamRequest } from '@/component/list-exam/list-exam.model';
 import { EXAM_TIME } from '@/component/list-exam/list-exam.constant';
-import { LIST_ROUTER, QUESTION_TYPE } from '@/common/constant';
+import { QUESTION_TYPE } from '@/common/constant';
 
 import Loading from '@/component/common/loading/loading';
 import ExamHeader from '@/component/layout/header/exam-header/exam-header';
@@ -89,7 +89,7 @@ const ListeningPage = () => {
         setListTypeQuestion(data.listTypeQuestion);
         setIdAudio(response.resourceId);
 
-        localStorage.setItem('EXAM_ID', String(response.id));
+        sessionStorage.setItem('EXAM_ID', String(response.id));
         idSubmitRef.current = response.submitId;
       }
       setIsLoading(false);
@@ -125,7 +125,7 @@ const ListeningPage = () => {
           ref={audioRef}
           autoPlay
           muted={false}
-          src={`${process.env.REACT_APP_BASE_URL}/api/test/${idAudio}/audio`}
+          src={`${process.env.REACT_APP_BASE_URL}api/v1/test/${idAudio}/audio`}
         />
       )}
     </>
