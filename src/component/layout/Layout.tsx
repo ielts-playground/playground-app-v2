@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 
 import { useSelector } from 'react-redux';
 import { selectExamState } from '@/store/exam-slice';
