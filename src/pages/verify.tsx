@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useToast from '@/hooks/use-toast';
-import { selectAuthState } from '@/store/auth-slice';
+import { selectAuthState, setRenderHeaderInfo } from '@/store/auth-slice';
 
 import { CODE_SUCCESS } from '@/common/constant';
 import { verifyEmailApi } from '@/services/auth';
@@ -14,6 +14,9 @@ import Loading from '@/component/common/loading/loading';
 const VerifyPage = () => {
   const router = useRouter();
   const { notify } = useToast();
+
+  const dispatch = useDispatch();
+
   const authState = useSelector(selectAuthState);
   const { emailVerify } = authState;
 
@@ -29,10 +32,14 @@ const VerifyPage = () => {
     const res = await verifyEmailApi(payload);
     if (res.code === CODE_SUCCESS) {
       setIsVerifyError(false);
-      router.push('/home');
+
+      dispatch(setRenderHeaderInfo(Date.now()));
+
       notify('success', 'Verify successfully!');
       localStorage.setItem('TOKEN', res.data.token);
       localStorage.setItem('USER', JSON.stringify(res.data.user));
+
+      router.push('/home');
     } else {
       setIsVerifyError(true);
       notify('error', 'Wrong code!');

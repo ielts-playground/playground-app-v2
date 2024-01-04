@@ -57,15 +57,15 @@ const WritingPage = () => {
       dispatch(setHeaderExam(undefined));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
-      const examId = localStorage.getItem('EXAM_ID');
+      const examId = sessionStorage.getItem('EXAM_ID');
       const response = await getDataExam('writing', Number(examId));
       if (response) {
-        const data = transformDataExam(response);
+        const data = transformDataExam(response, true);
         setListQuestion(data.dataContent);
         setListTypeQuestion(data.listTypeQuestion);
         setContentLeft(data.contentLeft);
@@ -75,6 +75,17 @@ const WritingPage = () => {
     };
 
     getData();
+  }, []);
+
+  useEffect(() => {
+    const unloadCallback = (event: any) => {
+      event.preventDefault();
+      event.returnValue = '';
+      return '';
+    };
+
+    window.addEventListener('beforeunload', unloadCallback);
+    return () => window.removeEventListener('beforeunload', unloadCallback);
   }, []);
 
   return (
