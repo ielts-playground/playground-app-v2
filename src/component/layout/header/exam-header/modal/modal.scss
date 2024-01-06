@@ -1,0 +1,58 @@
+.overlay-background {
+  background-color: $background-overlay;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.modal__centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  .modal-container {
+    width: 60vw;
+    max-width: 600px;
+    max-height: 80vh;
+    background: $background-primary;
+    z-index: 10;
+    border-radius: 4px;
+    box-shadow: $box-shadow-primary;
+    padding-bottom: 36px;
+
+    .modal-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      background-image: $background-image-primary;
+      overflow: hidden;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+
+      .title-header {
+        font-size: $fs-20;
+        font-weight: 700;
+        margin: 0;
+      }
+    }
+
+    .modal-content {
+      padding: 0 40px 16px;
+      margin: 15px 0;
+      font-size: $fs-18;
+      color: $color-secondary;
+
+      .mt-16 {
+        margin-top: 16px;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

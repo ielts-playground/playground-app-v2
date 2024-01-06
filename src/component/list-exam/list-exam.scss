@@ -1,0 +1,67 @@
+.list-exam__container {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .part-item {
+    width: 800px;
+    height: 200px;
+    padding: 20px;
+    background-color: $background-secondary;
+    box-shadow: 0 0 6px $box-shadow-primary;
+    border-radius: 8px;
+    margin-bottom: 20px;
+
+    .title-part,
+    button {
+      text-transform: uppercase;
+    }
+
+    .title-part,
+    .time {
+      color: #000;
+    }
+
+    .not-completed {
+      font-size: 16px;
+      font-weight: 700;
+      color: red;
+    }
+
+    .completed {
+      font-weight: 700;
+      font-size: 16px;
+      color: green;
+    }
+
+    .confirm-button {
+      width: 80px;
+      height: 35px;
+      font-size: 16px;
+      font-weight: 500;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      margin-top: 10px;
+    }
+    // .confirm-button.enable {
+    //   background-color: $secondary;
+    //   color: $color-text-white;
+    //   cursor: pointer;
+
+    //   &:hover {
+    //     background-image: $background-image-primary;
+    //   }
+    // }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .list-exam__container {
+    .part-item {
+      width: 600px;
+    }
+  }
+}

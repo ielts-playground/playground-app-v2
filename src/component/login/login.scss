@@ -1,0 +1,11 @@
+.container-login {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  box-shadow: $box-shadow-primary;
+
+  .form-title {
+    width: 300px;
+  }
+}
