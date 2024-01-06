@@ -12,7 +12,7 @@ import AuthVerify from '@/component/common/auth-verify';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <AuthVerify onLogOut={() => console.log('logout')}>
+    <AuthVerify>
       <Layout>
         <Component {...pageProps} />
         <ToastContainer />
