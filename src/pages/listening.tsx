@@ -125,7 +125,7 @@ const ListeningPage = () => {
           ref={audioRef}
           autoPlay
           muted={false}
-          src={`${process.env.REACT_APP_BASE_URL}api/v1/test/${idAudio}/audio`}
+          src={`${process.env.NEXT_PUBLIC_SERVER_BASE_URL}/api/v1/test/${idAudio}/audio`}
         />
       )}
     </>

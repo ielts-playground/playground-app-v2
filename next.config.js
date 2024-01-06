@@ -13,9 +13,6 @@ const nextConfig = {
       },
     ],
   },
-  env: {
-    REACT_APP_BASE_URL: 'https://test.tuanm.dev/',
-  },
   output: 'export',
   images: {
     unoptimized: true,
