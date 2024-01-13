@@ -3,19 +3,17 @@ import { useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthState, setRenderHeaderInfo } from '@/store/auth-slice';
+import { INIT_LIST_EXAM, setListExam } from '@/store/exam-slice';
 
 import { UserInfoUser } from '@/models/auth';
 import Button from '@/component/common/button/button';
-import { LIST_ROUTER } from '@/common/constant';
 
 import './header.scss';
 
 export const Header = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-
   const authState = useSelector(selectAuthState);
-  console.log(authState.renderHeaderInfo);
 
   const [userInfo, setUserInfo] = useState<UserInfoUser | null>(null);
 
@@ -30,8 +28,9 @@ export const Header = () => {
 
   const handleLogout = () => {
     dispatch(setRenderHeaderInfo(Date.now()));
-    router.push(LIST_ROUTER.LOGIN);
+    router.push('/');
     localStorage.clear();
+    dispatch(setListExam(INIT_LIST_EXAM));
   };
 
   return (

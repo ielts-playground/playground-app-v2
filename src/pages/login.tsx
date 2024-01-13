@@ -28,7 +28,7 @@ const SignInPage = () => {
       localStorage.setItem('TOKEN', res.data.token);
       localStorage.setItem('USER', JSON.stringify(res.data.user));
       dispatch(setRenderHeaderInfo(Date.now()));
-      router.push('/home');
+      router.push('/list-exam');
     } else {
       notify('error', 'Email or Password incorrect!');
     }

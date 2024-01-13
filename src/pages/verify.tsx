@@ -39,7 +39,7 @@ const VerifyPage = () => {
       localStorage.setItem('TOKEN', res.data.token);
       localStorage.setItem('USER', JSON.stringify(res.data.user));
 
-      router.push('/home');
+      router.push('/list-exam');
     } else {
       setIsVerifyError(true);
       notify('error', 'Wrong code!');

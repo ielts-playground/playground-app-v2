@@ -1,9 +1,11 @@
 .container-login {
-  width: 500px;
+  max-width: 500px;
   display: flex;
   justify-content: center;
-  padding: 40px;
+  padding: 40px 0;
   box-shadow: $box-shadow-primary;
+  margin: 0 20px;
+  width: 100%;
 
   .form-title {
     width: 300px;

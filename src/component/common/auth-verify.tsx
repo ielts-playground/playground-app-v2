@@ -20,7 +20,7 @@ const AuthVerify = ({ children }: Props) => {
     if (token) {
       if (!isTokenExpired(token)) {
         if (pathname && PATHS_NAME_AUTH.includes(pathname)) {
-          router.push('/home');
+          router.push('/list-exam');
         }
       }
     } else {

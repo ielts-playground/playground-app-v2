@@ -143,6 +143,10 @@ const MainExamContent = ({
                   dangerouslySetInnerHTML={{
                     __html: markdownToHtml(item),
                   }}
+                  onContextMenu={(e) => {
+                    e.preventDefault();
+                    // console.log(window?.getSelection()?.toString());
+                  }}
                 />
               ))}
             </div>
