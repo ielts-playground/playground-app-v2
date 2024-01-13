@@ -47,8 +47,8 @@ const Register = ({ onRegister }: Props) => {
       onSubmit={(values) => onRegister(values)}
     >
       {() => (
-        <div className='container mt-3'>
-          <div className='row container-register'>
+        <div className='register-container' style={{ width: '100%' }}>
+          <div className='row register-wrapper'>
             <div className='col-md-5 col-sm-12'>
               <div>
                 <h1 className='my-4 font-weight-bold sign-up-button color-text-secondary'>

@@ -1,11 +1,7 @@
-import Home from '@/component/init-page/init-page';
+import Init from '@/component/init-page/init-page';
 
 const InitPage = () => {
-  return (
-    <>
-      <Home />
-    </>
-  );
+  return <Init />;
 };
 
 export default InitPage;

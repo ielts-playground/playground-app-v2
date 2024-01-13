@@ -31,25 +31,25 @@ const Login = ({ onClickLogin }: Props) => {
       onSubmit={(values) => onClickLogin(values)}
     >
       {() => (
-        <div className='container-login'>
-          <div className='form-title'>
-            <h2 className='color-text-secondary'>Login</h2>
-            <Form>
-              <InputField name='email' type='text' placeholder='Email' />
-              <InputField name='password' type='password' placeholder='Password' />
-              <div className='my-4'>
-                <Button
-                  className='mt-4'
-                  text='Login'
-                  type='submit'
-                  style={{ fontSize: '18px', width: '100%' }}
-                />
-              </div>
-            </Form>
-            <div>
+        <div className='d-flex justify-content-center' style={{ width: '100%' }}>
+          <div className='container-login'>
+            <div className='form-title'>
+              <h2 className='color-text-secondary'>Login</h2>
+              <Form>
+                <InputField name='email' type='text' placeholder='Email' />
+                <InputField name='password' type='password' placeholder='Password' />
+                <div className='my-4'>
+                  <Button
+                    className='mt-4'
+                    text='Login'
+                    type='submit'
+                    style={{ fontSize: '18px', width: '100%' }}
+                  />
+                </div>
+              </Form>
               <Link href='/register'>Do not have an account?</Link>
+              {/* <Link href='/register'>Forgot password</Link> */}
             </div>
-            <Link href='/register'>Forgot password</Link>
           </div>
         </div>
       )}

@@ -1,4 +1,14 @@
-.container-register {
-  padding: 20px 40px;
-  box-shadow: $box-shadow-primary;
+.register-container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  margin: 10px 0;
+
+  .register-wrapper {
+    padding: 20px 40px;
+    box-shadow: $box-shadow-primary;
+    max-width: 1140px;
+    margin: 0 20px;
+  }
 }

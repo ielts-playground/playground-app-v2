@@ -4,10 +4,12 @@ import { HYDRATE } from 'next-redux-wrapper';
 
 export type CommonState = {
   isLoading: boolean;
+  isInit: boolean;
 };
 
 const initialState: CommonState = {
   isLoading: false,
+  isInit: false,
 };
 
 export const commonSlice = createSlice({
@@ -16,6 +18,9 @@ export const commonSlice = createSlice({
   reducers: {
     setIsLoading(state, action) {
       state.isLoading = action.payload;
+    },
+    setIsInit(state, action) {
+      state.isInit = action.payload;
     },
   },
 
@@ -29,6 +34,6 @@ export const commonSlice = createSlice({
   },
 });
 
-export const { setIsLoading } = commonSlice.actions;
+export const { setIsLoading, setIsInit } = commonSlice.actions;
 
 export const selectCommonState = (state: AppState) => state.common;

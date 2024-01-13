@@ -4,10 +4,11 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin: 0 auto;
 
   .part-item {
     width: 800px;
-    height: 200px;
+    max-height: 200px;
     padding: 20px;
     background-color: $background-secondary;
     box-shadow: 0 0 6px $box-shadow-primary;

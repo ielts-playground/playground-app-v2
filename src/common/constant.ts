@@ -24,4 +24,4 @@ export const LIST_ROUTER = {
   THANKS: 'thanks',
 };
 
-export const LIST_ROUTER_NOT_SUPPORT_MOBILE = ['listening', 'reading', 'writing'];
+export const LIST_ROUTER_NOT_SUPPORT_MOBILE = ['/listening', '/reading', '/writing', '/list-exam'];
