@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
@@ -7,6 +8,8 @@ import { INIT_LIST_EXAM, setListExam } from '@/store/exam-slice';
 
 import { UserInfoUser } from '@/models/auth';
 import Button from '@/component/common/button/button';
+
+import logo from '~/assets/images/logo.png';
 
 import './header.scss';
 
@@ -36,7 +39,7 @@ export const Header = () => {
   return (
     <header key={authState.renderHeaderInfo} className='header-outer'>
       <div className='header-inner responsive-wrapper'>
-        <div className='header-logo'>Logo</div>
+        <Image src={logo} alt='logo' width={60} height={60} />
         <div className='right-header-container'>
           <div className='header-navigation'>{userInfo?.fullName}</div>
           {Object.keys(userInfo ? userInfo : {}).length !== 0 && (

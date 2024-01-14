@@ -1,7 +1,16 @@
-.main-container {
+.main-container,
+.main-container-init {
   display: flex;
   align-items: center;
   height: calc(100vh - $header-outer-height);
   overflow: auto;
   position: relative;
+}
+
+.main-container {
+  background: linear-gradient(90deg, #ccaf94, $background-primary) !important;
+}
+
+.main-container-init {
+  background-color: #021027;
 }

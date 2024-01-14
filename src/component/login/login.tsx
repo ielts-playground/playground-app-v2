@@ -1,13 +1,13 @@
-import Link from 'next/link';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import { ChevronRight, EnvelopeCheck, PersonLock } from 'react-bootstrap-icons';
 
 import { LoginType } from '@/models/auth';
 import { EMAIL_REG_EXP } from '@/constant/auth';
 
 import './login.scss';
 import InputField from '../exam-content/components/input/input-field';
-import Button from '../common/button/button';
+import FormButton from '../common/form-button/form-button';
 
 type Props = {
   onClickLogin: (payload: LoginType) => void;
@@ -31,24 +31,32 @@ const Login = ({ onClickLogin }: Props) => {
       onSubmit={(values) => onClickLogin(values)}
     >
       {() => (
-        <div className='d-flex justify-content-center' style={{ width: '100%' }}>
-          <div className='container-login'>
-            <div className='form-title'>
-              <h2 className='color-text-secondary'>Login</h2>
+        <div className='d-flex justify-content-center' style={{ width: '100vw' }}>
+          <div className='form-container login-form'>
+            <div className='form__content'>
               <Form>
-                <InputField name='email' type='text' placeholder='Email' />
-                <InputField name='password' type='password' placeholder='Password' />
-                <div className='my-4'>
-                  <Button
-                    className='mt-4'
-                    text='Login'
-                    type='submit'
-                    style={{ fontSize: '18px', width: '100%' }}
+                <div className='login'>
+                  <div className='form__field'>
+                    <EnvelopeCheck />
+                    <InputField name='email' type='text' placeholder='Email' />
+                  </div>
+                  <div className='form__field'>
+                    <PersonLock />
+                    <InputField name='password' type='password' placeholder='Password' />
+                  </div>
+                  <FormButton
+                    icon={<ChevronRight />}
+                    text='Log In Now'
+                    style={{ width: '100%', marginTop: '60px' }}
                   />
                 </div>
               </Form>
-              <Link href='/register'>Do not have an account?</Link>
-              {/* <Link href='/register'>Forgot password</Link> */}
+            </div>
+            <div className='screen__background'>
+              <span className='screen__background__shape screen__background__shape4'></span>
+              <span className='screen__background__shape screen__background__shape3'></span>
+              <span className='screen__background__shape screen__background__shape2'></span>
+              <span className='screen__background__shape screen__background__shape1'></span>
             </div>
           </div>
         </div>

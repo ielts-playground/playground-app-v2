@@ -1,0 +1,89 @@
+.screen__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+  overflow: hidden;
+}
+
+.form-container {
+  background: linear-gradient(90deg, $background-primary, $background-primary);
+  position: relative;
+  box-shadow: $box-shadow-primary;
+}
+
+.form__content {
+  z-index: 1;
+  position: relative;
+  height: 100%;
+}
+
+.form__field {
+  margin: 30px 0px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.screen__background__shape {
+  transform: rotate(45deg);
+  position: absolute;
+}
+
+.screen__background__shape1 {
+  height: 520px;
+  width: 520px;
+  background: #fff;
+  top: -50px;
+  right: 120px;
+  border-radius: 0 72px 0 0;
+}
+
+.screen__background__shape2 {
+  height: 220px;
+  width: 220px;
+  background: rgb(219, 219, 16);
+  top: -172px;
+  right: 0;
+  border-radius: 32px;
+}
+
+.screen__background__shape3 {
+  height: 540px;
+  width: 190px;
+  background: linear-gradient(270deg, $background-secondary, $background-secondary);
+  top: -24px;
+  right: 0;
+  border-radius: 32px;
+}
+
+.screen__background__shape4 {
+  height: 400px;
+  width: 200px;
+  background: rgb(163, 163, 11);
+  top: 420px;
+  right: 50px;
+  border-radius: 60px;
+}
+
+.form__input {
+  border: none;
+  background: none;
+  padding: 10px;
+  padding-left: 12px;
+  font-weight: 700;
+  width: 95%;
+  transition: 0.2s;
+  border-bottom: 2px solid #d1d1d4;
+}
+
+.form__input:active,
+.form__input:focus,
+.form__input:hover {
+  outline: none;
+  border-bottom-color: $background-primary;
+}
