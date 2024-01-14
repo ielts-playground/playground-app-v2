@@ -13,12 +13,12 @@ type Props = {
 const InputField = ({ label, ...props }: Props) => {
   const [field, meta] = useField(props);
   return (
-    <div className='mb-4'>
-      <label htmlFor={field.name} className='mb-2 color-text-secondary'>
+    <div style={{ width: '100%' }}>
+      <label htmlFor={field.name} className='mb-2'>
         {label}
       </label>
       <input
-        className={`form-control shadow-none ${meta.touched && meta.error && 'is-invalid'}`}
+        className={`form__input ${meta.touched && meta.error && 'is-invalid'}`}
         {...field}
         {...props}
         autoComplete='off'

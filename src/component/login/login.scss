@@ -5,9 +5,32 @@
   padding: 40px 0;
   box-shadow: $box-shadow-primary;
   margin: 0 20px;
-  width: 100%;
+  width: 100vw;
 
   .form-title {
     width: 300px;
+  }
+}
+
+.login-form {
+  height: 600px;
+  width: 360px;
+}
+
+.login {
+  width: 320px;
+  padding: 30px;
+  padding-top: 156px;
+}
+
+@media screen and (max-width: 600px) {
+  .login-form {
+    height: 500px;
+    width: 340px;
+
+    .login {
+      width: 320px;
+      padding: 20px;
+    }
   }
 }

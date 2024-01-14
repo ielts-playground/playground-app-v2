@@ -1,15 +1,22 @@
 import { Formik, Form } from 'formik';
 import Link from 'next/link';
-import Image from 'next/image';
 import * as Yup from 'yup';
+import {
+  ChevronRight,
+  EnvelopeAt,
+  PersonFillLock,
+  PersonLock,
+  PersonVcard,
+  Telephone,
+  XLg,
+} from 'react-bootstrap-icons';
 
 import { RegisterType } from '@/models/auth';
 import { EMAIL_REG_EXP, PHONE_REG_EXP } from '@/constant/auth';
 
-import Button from '../common/button/button';
 import InputField from '../exam-content/components/input/input-field';
+import FormButton from '../common/form-button/form-button';
 
-import rocketImg from '../../../public/assets/rocket.png';
 import './register.scss';
 
 type Props = {
@@ -47,22 +54,48 @@ const Register = ({ onRegister }: Props) => {
       onSubmit={(values) => onRegister(values)}
     >
       {() => (
-        <div className='register-container' style={{ width: '100%' }}>
-          <div className='row register-wrapper'>
-            <div className='col-md-5 col-sm-12'>
-              <div>
-                <h1 className='my-4 font-weight-bold sign-up-button color-text-secondary'>
-                  Sign Up
-                </h1>
+        <div className='register-container' style={{ width: '100vw' }}>
+          <div className='form-container'>
+            <div className='form__content register-form'>
+              <div className='register'>
+                <h1 className='my-4 font-weight-bold sign-up-button'>Sign Up</h1>
                 <Form>
-                  <InputField label='Full Name' name='fullName' type='text' />
-                  <InputField label='Email' name='email' type='email' />
-                  <InputField label='Phone' name='phoneNumber' type='text' />
-                  <InputField label='Password' name='password' type='password' />
-                  <InputField label='Confirm Password' name='passwordConfirm' type='password' />
-                  <div className='d-flex gap-4 mt-4'>
-                    <Button text='Register' type='submit' style={{ fontSize: '18px' }} />
-                    <Button text='Reset' type='reset' style={{ fontSize: '18px' }} />
+                  <div className='form__field'>
+                    <PersonVcard />
+                    <InputField name='fullName' type='text' placeholder='Full Name' />
+                  </div>
+                  <div className='form__field'>
+                    <EnvelopeAt />
+                    <InputField name='email' type='email' placeholder='Email' />
+                  </div>
+                  <div className='form__field'>
+                    <Telephone />
+                    <InputField name='phoneNumber' type='text' placeholder='Phone' />
+                  </div>
+                  <div className='form__field'>
+                    <PersonLock />
+                    <InputField name='password' type='password' placeholder='Password' />
+                  </div>
+                  <div className='form__field'>
+                    <PersonFillLock />
+                    <InputField
+                      name='passwordConfirm'
+                      type='password'
+                      placeholder='Confirm Password'
+                    />
+                  </div>
+                  <div className='d-flex gap-4 button-register'>
+                    <FormButton
+                      icon={<ChevronRight />}
+                      text='Register Now'
+                      style={{ width: '180px' }}
+                    />
+                    <FormButton
+                      type='reset'
+                      icon={<XLg />}
+                      text='Reset'
+                      style={{ width: '160px' }}
+                    />
                   </div>
                 </Form>
                 <div className='mt-4'>
@@ -70,8 +103,11 @@ const Register = ({ onRegister }: Props) => {
                 </div>
               </div>
             </div>
-            <div className='col-md-7 col-sm-12 my-auto'>
-              <Image className='img-fluid w-100' src={rocketImg} alt='' />
+            <div className='screen__background'>
+              <span className='screen__background__shape screen__background__shape4'></span>
+              <span className='screen__background__shape screen__background__shape3'></span>
+              <span className='screen__background__shape screen__background__shape2'></span>
+              <span className='screen__background__shape screen__background__shape1'></span>
             </div>
           </div>
         </div>

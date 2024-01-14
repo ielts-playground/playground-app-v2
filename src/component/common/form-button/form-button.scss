@@ -1,0 +1,30 @@
+.form__submit {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  font-size: 14px;
+  padding: 16px 20px;
+  border-radius: 26px;
+  border: 1px solid #d4d3e8;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  color: $background-primary;
+  box-shadow: $box-shadow-primary;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.form__submit:active,
+.form__submit:focus,
+.form__submit:hover {
+  border-color: $background-primary;
+  outline: none;
+}
+
+.button__icon {
+  font-size: 24px;
+  margin-left: auto;
+  color: $background-primary;
+}

@@ -7,8 +7,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Layout } from '@/component/layout/layout';
-import '../scss/index.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import AuthVerify from '@/component/common/auth-verify';
+
+import '../scss/index.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
