@@ -1,7 +1,9 @@
 import type { ReactNode } from 'react';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { usePathname, useRouter } from 'next/navigation';
 import { PATHS_NAME_AUTH } from '@/constant/auth';
+import { selectAuthState } from '@/store/auth-slice';
 
 type Props = {
   children: ReactNode;
@@ -15,6 +17,9 @@ const AuthVerify = ({ children }: Props) => {
   const pathname = usePathname();
   const router = useRouter();
 
+  const authState = useSelector(selectAuthState);
+  const { emailVerify } = authState;
+
   useEffect(() => {
     let token = localStorage.getItem('TOKEN');
     if (token) {
@@ -24,7 +29,8 @@ const AuthVerify = ({ children }: Props) => {
         }
       }
     } else {
-      ((pathname && !PATHS_NAME_AUTH.includes(pathname)) || pathname === '/verify') &&
+      ((pathname && !PATHS_NAME_AUTH.includes(pathname)) ||
+        (!emailVerify && pathname === '/verify')) &&
         router.push('/');
     }
   }, [pathname, router]);
