@@ -3,13 +3,13 @@ import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 import { useEffect } from 'react';
+import { CheckLg, ChevronRight } from 'react-bootstrap-icons';
 
 import { setTypeRegister } from '@/store/auth-slice';
 import { setIsInit } from '@/store/common-slice';
 import backgroundImage from '~/assets/images/sky.jpg';
-import checkedIcon from '~/svg/checked.svg';
 
-import Button from '../common/button/button';
+import FormButton from '../common/form-button/form-button';
 import './init-page.scss';
 
 const Init = () => {
@@ -348,18 +348,28 @@ const Init = () => {
         <div>
           <ul>
             <li className='d-flex gap-2'>
-              <Image src={checkedIcon} alt='checked' />
+              <CheckLg />
               <span className='ml-2'>999+ IELTS tests ready for you to explore</span>
             </li>
             <li className='d-flex gap-2'>
-              <Image src={checkedIcon} alt='checked' />
+              <CheckLg />
               <span>Always up-to-date with the newest IELTS tests in Vietnam</span>
             </li>
           </ul>
         </div>
         <div className='button-container mb-4'>
-          <Button className='w-100' text='FREE' onClick={() => handleToRegister('FREE')} />
-          <Button className='w-100' text='V.I.P' onClick={() => handleToRegister('PREMIUM')} />
+          <FormButton
+            text='FREE'
+            icon={<ChevronRight />}
+            style={{ width: '140px' }}
+            onClick={() => handleToRegister('FREE')}
+          />
+          <FormButton
+            text='V.I.P'
+            icon={<ChevronRight />}
+            style={{ width: '140px' }}
+            onClick={() => handleToRegister('PREMIUM')}
+          />
         </div>
         <Link href='/login'>Do you have an account?</Link>
       </div>

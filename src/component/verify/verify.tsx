@@ -135,29 +135,41 @@ const Verify = ({ emailVerify, isVerifyError, onSubmitVerify }: Props) => {
 
   return (
     <div className='container-vefiry'>
-      <form action='#'>
-        <div className='d-flex flex-column align-items-center justify-content-center'>
-          <h3>OTP VERIFICATION</h3>
-          <p className='info'>An OTP has been sent to</p>
-          <p>{emailVerifyConvert}</p>
-          <p className='msg'>Please enter OTP to verify</p>
+      <div className='form-container verify-form'>
+        <div className='form__content d-flex align-items-center'>
+          <form action='#'>
+            <div className='verìy'>
+              <div className='d-flex flex-column align-items-center justify-content-center'>
+                <h3>OTP VERIFICATION</h3>
+                <p className='info'>An OTP has been sent to</p>
+                <p>{emailVerifyConvert}</p>
+                <p className='msg'>Please enter OTP to verify</p>
+              </div>
+              <div className='d-flex mb-3'>
+                {listValueInCodeVerify.map((item, index) => (
+                  <input
+                    key={index}
+                    type='tel'
+                    maxLength={1}
+                    pattern='[0-9]'
+                    className='form-control shadow-none'
+                    value={item}
+                    onChange={(e) => handleChange(e, index)}
+                    onPaste={(e) => handlePaste(e, index)}
+                    onKeyDown={(e) => handleKeydown(e, index)}
+                  />
+                ))}
+              </div>
+            </div>
+          </form>
         </div>
-        <div className='d-flex mb-3'>
-          {listValueInCodeVerify.map((item, index) => (
-            <input
-              key={index}
-              type='tel'
-              maxLength={1}
-              pattern='[0-9]'
-              className='form-control shadow-none'
-              value={item}
-              onChange={(e) => handleChange(e, index)}
-              onPaste={(e) => handlePaste(e, index)}
-              onKeyDown={(e) => handleKeydown(e, index)}
-            />
-          ))}
+        <div className='screen__background'>
+          <span className='screen__background__shape screen__background__shape4'></span>
+          <span className='screen__background__shape screen__background__shape3'></span>
+          <span className='screen__background__shape screen__background__shape2'></span>
+          <span className='screen__background__shape screen__background__shape1'></span>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

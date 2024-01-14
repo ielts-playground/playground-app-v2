@@ -8,10 +8,6 @@
     gap: 6px;
   }
 
-  a {
-    color: $color-secondary;
-  }
-
   ul {
     list-style: none;
   }
@@ -143,6 +139,18 @@
 
     to {
       opacity: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .init-page {
+    z-index: 9999;
+    margin: 0 0 240px 20px;
+    color: $color-secondary;
+
+    ul {
+      padding-left: 10px;
     }
   }
 }

@@ -1,17 +1,15 @@
 .container-vefiry {
+  width: 100vw;
   padding: 4vw;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $color-secondary;
 }
 
 form {
   max-width: 400px;
   padding: 2rem;
   border-radius: 4px;
-  box-shadow: $box-shadow-primary;
 
   .form-control {
     display: block;
@@ -25,4 +23,15 @@ form {
       margin-right: 0;
     }
   }
+}
+
+.verify-form {
+  height: 500px;
+  width: 360px;
+}
+
+.verify {
+  width: 320px;
+  padding: 30px;
+  padding-top: 156px;
 }
