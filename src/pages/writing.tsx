@@ -2,9 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { donePart, setHeaderExam } from '@/store/exam-slice';
+import useSubmitExam from '@/hooks/use-submit-exam';
 
 import ExamContentContainer from '@/component/exam-content/exam-content';
-import { DATA_MOCK_WRITING } from '@/component/exam-content/exam-content.constants';
 import { transformDataExam } from '@/component/exam-content/exam-content.utils';
 import { DataContentType, TypeQuestionType } from '@/component/exam-content/exam-content.model';
 
@@ -16,6 +16,7 @@ import { AnswerRequest, ExamRequest } from '@/component/list-exam/list-exam.mode
 
 const WritingPage = () => {
   const dispatch = useDispatch();
+  const { handleSubmit } = useSubmitExam();
 
   const listQuestionRef = useRef<DataContentType[]>([]);
   const idSubmitRef = useRef<number>(0);
@@ -31,19 +32,7 @@ const WritingPage = () => {
   }, [listQuestion]);
 
   const handleSubmitExam = () => {
-    const request: AnswerRequest = {};
-
-    listQuestionRef.current?.forEach((ele) => {
-      request[`${ele.id}`] = ele.value;
-    });
-
-    const payload: ExamRequest = {
-      answers: request,
-      examTestId: 0,
-    };
-
-    submitExam(idSubmitRef.current, payload);
-    dispatch(donePart({ currentPart: 'writing' }));
+    handleSubmit(listQuestionRef.current, idSubmitRef.current, 'writing');
   };
 
   const examHeader = () => (

@@ -9,7 +9,6 @@ export const getDataExam = async (examType: string, id?: number | string) => {
     const data: BaseResponse<TestExamResponse> = res.data;
     return data.data;
   } catch (error) {
-    console.log(error);
     return undefined;
   }
 };
@@ -17,8 +16,9 @@ export const getDataExam = async (examType: string, id?: number | string) => {
 export const submitExam = async (idSubmit: number, payload: ExamRequest) => {
   try {
     const response = await api.put(`api/v1/exam/${idSubmit}/submit`, { ...payload });
-    return response;
+    const data: BaseResponse<null> = response.data;
+    return data;
   } catch (error) {
-    return false;
+    return undefined;
   }
 };

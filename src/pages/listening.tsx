@@ -2,16 +2,15 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
-import { donePart, setHeaderExam } from '@/store/exam-slice';
+import { setHeaderExam } from '@/store/exam-slice';
+import useSubmitExam from '@/hooks/use-submit-exam';
 
 import ExamContentContainer from '@/component/exam-content/exam-content';
 import { transformDataExam } from '@/component/exam-content/exam-content.utils';
 import { DataContentType, TypeQuestionType } from '@/component/exam-content/exam-content.model';
 
-import { getDataExam, submitExam } from '@/services/exam';
-import { AnswerRequest, ExamRequest } from '@/component/list-exam/list-exam.model';
+import { getDataExam } from '@/services/exam';
 import { EXAM_TIME } from '@/component/list-exam/list-exam.constant';
-import { QUESTION_TYPE } from '@/common/constant';
 
 import Loading from '@/component/common/loading/loading';
 import ExamHeader from '@/component/layout/header/exam-header/exam-header';
@@ -19,6 +18,7 @@ import ExamHeader from '@/component/layout/header/exam-header/exam-header';
 const ListeningPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { handleSubmit } = useSubmitExam();
 
   const audioRef = useRef<any>(null);
   const listQuestionRef = useRef<DataContentType[]>([]);
@@ -43,21 +43,7 @@ const ListeningPage = () => {
   }, [listQuestion]);
 
   const handleSubmitExam = () => {
-    const request: AnswerRequest = {};
-
-    listQuestionRef.current?.forEach((ele) => {
-      if (ele.type === QUESTION_TYPE.CHOOSE_TWO_ANSWER_LISTENING) {
-        request[`${ele.subId}-${ele.subId + 1}`] = JSON.stringify(ele.value);
-      } else request[`${ele.id}`] = ele.value;
-    });
-
-    const payload: ExamRequest = {
-      answers: request,
-      examTestId: 0,
-    };
-
-    submitExam(idSubmitRef.current, payload);
-    dispatch(donePart({ currentPart: 'listening', nextPart: 'reading' }));
+    handleSubmit(listQuestionRef.current, idSubmitRef.current, 'listening', 'reading');
   };
 
   const examHeader = () => (

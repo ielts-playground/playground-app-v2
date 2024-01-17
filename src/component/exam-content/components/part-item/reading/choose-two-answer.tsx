@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
-import { markdownToHtml } from '@/component/exam-content/exam-content.utils';
+import {
+  markdownToHtml,
+  transformDataMultiAnswers,
+} from '@/component/exam-content/exam-content.utils';
 import { DataContentType } from '@/component/exam-content/exam-content.model';
 import CheckBoxAnswer from '@/component/common/check-box/check-box';
 import { DEFAULT_QUESTION } from '@/component/exam-content/exam-content.constants';
+import { QUESTION_TYPE } from '@/common/constant';
 
 const mountedStyle = {
   animation: 'inAnimation 350ms ease-in',
@@ -30,8 +34,12 @@ const ChooseTwoAnswerReading = ({
   const [question, setQuestion] = useState<DataContentType>(DEFAULT_QUESTION);
 
   useEffect(() => {
-    const questionTwoAnswer = listQuestion.find((item) => item.numberOrder === numberOrder);
-    setQuestion(questionTwoAnswer ? questionTwoAnswer : DEFAULT_QUESTION);
+    const questionTransform = transformDataMultiAnswers(
+      listQuestion,
+      QUESTION_TYPE.CHOOSE_TWO_ANSWER,
+      numberOrder
+    );
+    setQuestion(questionTransform);
   }, [listQuestion, numberOrder]);
 
   return (
@@ -41,7 +49,7 @@ const ChooseTwoAnswerReading = ({
         className={`question ${questionActive === question.id ? 'question__active' : ''}`}
         onClick={() => setQuestionActive(question.subId)}
       >
-        <span className='question-number'>{question.id + ' + ' + `${question.id + 1}`}</span>
+        <span className='question-number'>{question.id + ' - ' + `${question.id + 1}`}</span>
         <span
           dangerouslySetInnerHTML={{
             __html: markdownToHtml(question.questionTitle || ''),

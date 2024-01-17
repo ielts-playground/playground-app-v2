@@ -114,6 +114,9 @@ const ExamContentContainer = ({
     setListQuestion((prev) => {
       const newData = [...prev];
       const question = newData[questionSubId - 1];
+      const lastQuestionId =
+        Math.max(...newData.filter((q) => q.subId === questionSubId).map((q) => q.id)) ||
+        questionSubId;
       const questionDuplicate = newData[questionSubId];
       if (!question?.value) {
         question.value = [];
@@ -135,13 +138,15 @@ const ExamContentContainer = ({
         } else {
           question.isAnswer = true;
           questionDuplicate.isAnswer = true;
-          if (question.value.length === 2) {
+          const questionRangeLength = lastQuestionId - questionSubId + 1;
+          if (question.value.length === questionRangeLength) {
             question.value.shift();
           }
           question.value.push(answer);
         }
       }
       questionDuplicate.value = question.value;
+      console.log(question.value);
 
       return newData;
     });

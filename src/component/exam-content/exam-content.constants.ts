@@ -20,6 +20,7 @@ export const DATA_WRITING_CONTENT = [1, 2].map((item) => ({
 export const DEFAULT_QUESTION = {
   id: 1,
   subId: 1,
+  lastId: 1,
   part: 1,
   type: '',
   numberOrder: 1,
