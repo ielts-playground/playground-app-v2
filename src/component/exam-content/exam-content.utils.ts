@@ -1,11 +1,11 @@
 import { Converter } from 'showdown';
 import { DataContentType, TestExamResponse } from './exam-content.model';
-import { DATA_WRITING_CONTENT } from './exam-content.constants';
+import { DATA_WRITING_CONTENT, DEFAULT_QUESTION } from './exam-content.constants';
 
 const converter = new Converter();
 converter.setOption('simpleLineBreaks', false);
 
-export function markdownToHtml(markdown: string = '') {
+export const markdownToHtml = (markdown: string = '') => {
   const hasNewLineBefore = markdown.startsWith('\n');
   const hasNewLineAfter = markdown.endsWith('\n');
   let html = converter
@@ -20,7 +20,7 @@ export function markdownToHtml(markdown: string = '') {
     html = html + '<br>';
   }
   return html;
-}
+};
 
 export const countWords = (str: string) => {
   const arr = str.split(' ');
@@ -69,4 +69,22 @@ export const transformDataExam = (dataResponse?: TestExamResponse, isWriting = f
   const listTypeQuestion = dataResponse?.listTypeQuestion;
   const dataInPart = { dataContent, listTypeQuestion, contentLeft };
   return dataInPart;
+};
+
+export const transformDataMultiAnswers = (
+  listQuestion: DataContentType[],
+  questionType: string,
+  numberOrder: number
+) => {
+  const questions = listQuestion.filter(
+    (item) => item.type === questionType && item.numberOrder === numberOrder
+  );
+  if (questions.length > 0) {
+    const question = questions[0];
+    if (question) {
+      question.lastId = questions[questions.length - 1].id || question.id;
+      return question;
+    }
+  }
+  return DEFAULT_QUESTION;
 };

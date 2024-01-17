@@ -48,6 +48,7 @@ export type TestExamResponse = {
 
 export type DataContentType = {
   id: number;
+  lastId?: number;
   subId: number;
   part: number;
   type: string;

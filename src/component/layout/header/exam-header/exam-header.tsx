@@ -12,6 +12,7 @@ import listenExamSvg from '../../../../../public/svg/listen-exam-icon.svg';
 import Button from '@/component/common/button/button';
 import Modal from './modal/modal';
 
+import logo from '~/assets/images/logo.png';
 import './exam-header.scss';
 
 type Props = {
@@ -67,7 +68,7 @@ const ExamHeader = ({ typePart, isListening, examTime, onSubmitExam, setVolume }
   return (
     <header className='exam-header-container'>
       <div className='info-container'>
-        <h4>Logo</h4>
+        <Image src={logo} alt='logo' width={60} height={60} />
       </div>
       <div className='info-container'>
         <div className='icon-size'>
