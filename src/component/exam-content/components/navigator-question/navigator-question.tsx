@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
+import useHandleChangeListQuestion from '../../hooks/use-handle-change-list-question';
 import { DataContentType } from '../../exam-content.model';
 
 import './navigator-question.scss';
@@ -20,6 +21,8 @@ const NavigatorQuestion = ({
   onChangeReviewQuestion,
   onSelectPrevOrNextQuestion,
 }: Props) => {
+  const { getQuestionActive } = useHandleChangeListQuestion();
+
   const [numberOfPart, setNumberOfPart] = useState<number[]>([]);
   useEffect(() => {
     const partLastNumber = listQuestion[listQuestion?.length - 1]?.part;
@@ -74,7 +77,9 @@ const NavigatorQuestion = ({
           className={`button-feature button-previous ${
             questionActive === 1 ? 'button-prev__disable' : ''
           }`}
-          onClick={() => onSelectPrevOrNextQuestion(questionActive - 1)}
+          onClick={() =>
+            onSelectPrevOrNextQuestion(getQuestionActive(listQuestion, questionActive, false))
+          }
         ></button>
         <button
           className={`button-feature button-next ${
@@ -82,7 +87,9 @@ const NavigatorQuestion = ({
               ? 'button-next__disable'
               : ''
           }`}
-          onClick={() => onSelectPrevOrNextQuestion(questionActive + 1)}
+          onClick={() =>
+            onSelectPrevOrNextQuestion(getQuestionActive(listQuestion, questionActive))
+          }
         ></button>
       </div>
     </div>

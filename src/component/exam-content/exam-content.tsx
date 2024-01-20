@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import useHandleChangeListQuestion from './hooks/use-handle-change-list-question';
 
 import { DataContentType, NumericalOrder, TypeQuestionType } from './exam-content.model';
 
@@ -25,6 +26,8 @@ const ExamContentContainer = ({
   listQuestion,
   setListQuestion,
 }: Props) => {
+  const { getNewListWithChangeValue, getNewListWithChangeReview } = useHandleChangeListQuestion();
+
   const [questionActive, setQuestionActive] = useState<number>(1);
   const [partActive, setPartActive] = useState<number>(1);
   const [numericalOrderInPart, setNumericalOrderInPart] = useState<NumericalOrder>({
@@ -40,14 +43,14 @@ const ExamContentContainer = ({
 
   useEffect(() => {
     let numericalOrder = { first: 0, last: 0 };
-    let questionInActive: any;
-    questionInActive = listQuestion.find((item: any) => item.subId === questionActive);
+    let questionInActive: DataContentType | undefined;
+    questionInActive = listQuestion.find((item) => item.subId === questionActive);
     if (!questionInActive) {
-      questionInActive = listQuestion.find((item: any) => item.subId === questionActive + 1);
+      questionInActive = listQuestion.find((item) => item.subId === questionActive + 1);
     }
 
     const listQuestionFilterWithPart = listQuestion.filter(
-      (item: any) => item.part === partActive || item.part === questionInActive?.part
+      (item) => item.part === partActive || item.part === questionInActive?.part
     );
 
     numericalOrder = {
@@ -57,7 +60,7 @@ const ExamContentContainer = ({
 
     setListQuestionInPart(listQuestionFilterWithPart);
     setNumericalOrderInPart(numericalOrder);
-    setPartActive(questionInActive?.part);
+    setPartActive(questionInActive?.part || 1);
   }, [listQuestion, partActive, questionActive]);
 
   useEffect(() => {
@@ -111,45 +114,8 @@ const ExamContentContainer = ({
   const handleChangeTwoValue = (questionSubId: number, answer: string) => {
     setQuestionActive(questionSubId);
 
-    setListQuestion((prev) => {
-      const newData = [...prev];
-      const question = newData[questionSubId - 1];
-      const lastQuestionId =
-        Math.max(...newData.filter((q) => q.subId === questionSubId).map((q) => q.id)) ||
-        questionSubId;
-      const questionDuplicate = newData[questionSubId];
-      if (!question?.value) {
-        question.value = [];
-      }
-
-      if (answer) {
-        if (question.value?.includes(answer)) {
-          const indexAnswer = question.value.indexOf(answer);
-          if (indexAnswer === 1) {
-            question.value.pop();
-          } else {
-            question.value.shift();
-          }
-          if (!question.value.length) {
-            question.value = '';
-            question.isAnswer = false;
-            questionDuplicate.isAnswer = false;
-          }
-        } else {
-          question.isAnswer = true;
-          questionDuplicate.isAnswer = true;
-          const questionRangeLength = lastQuestionId - questionSubId + 1;
-          if (question.value.length === questionRangeLength) {
-            question.value.shift();
-          }
-          question.value.push(answer);
-        }
-      }
-      questionDuplicate.value = question.value;
-      console.log(question.value);
-
-      return newData;
-    });
+    const newListQuestion = getNewListWithChangeValue(listQuestion, questionSubId, answer);
+    setListQuestion(newListQuestion);
   };
 
   const handleChangeAnswerWriting = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -174,30 +140,19 @@ const ExamContentContainer = ({
 
   const handleChangeReviewQuestion = (event: React.ChangeEvent<HTMLInputElement>) => {
     const isChecked = event.target.checked;
-
     setIsReview(isChecked);
-    setListQuestion((prev) => {
-      const newData = [...prev];
-      const question = newData[questionActive - 1];
-      const listQuestionReview = newData.filter((item: any) => item.subId === questionActive);
 
-      if (listQuestionReview.length === 2) {
-        const questionDuplicate = newData[questionActive];
-        questionDuplicate.isReview = isChecked;
-      }
-
-      question.isReview = isChecked;
-      return newData;
-    });
+    const newListQuestion = getNewListWithChangeReview(listQuestion, questionActive, isChecked);
+    setListQuestion(newListQuestion);
   };
 
-  const handleSelectPrevOrNextQuestion = (questionSubId: number) => {
-    if (!questionSubId || questionSubId > listQuestion[listQuestion.length - 1]?.id) {
+  const handleSelectPrevOrNextQuestion = (questionId: number) => {
+    if (!questionId || questionId > listQuestion[listQuestion.length - 1]?.id) {
       return;
     }
-    const question = listQuestion[questionSubId - 1];
+    const question = listQuestion[questionId - 1];
     setIsReview(question.isReview);
-    setQuestionActive(questionSubId);
+    setQuestionActive(questionId);
   };
 
   return (
