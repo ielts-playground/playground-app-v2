@@ -1,4 +1,5 @@
 import { usePathname } from 'next/navigation';
+import Head from 'next/head';
 import { type ReactNode } from 'react';
 
 import { useSelector } from 'react-redux';
@@ -29,6 +30,9 @@ export const Layout = ({ children }: LayoutProps) => {
 
   return (
     <>
+      <Head>
+        <title>IELTS Playground</title>
+      </Head>
       {headerExam ? headerExam : <Header />}
       {breakpoint === DEFAULT_SCREEN.MOBILE &&
       pathname &&
