@@ -18,7 +18,7 @@ import ExamContentContainer from '@/component/exam-content/exam-content';
 
 const ReadingPage = () => {
   const dispatch = useDispatch();
-  const { handleSubmit } = useSubmitExam();
+  const { handleSubmit } = useSubmitExam('reading');
 
   const listQuestionRef = useRef<DataContentType[]>([]);
   const idSubmitRef = useRef<number>(0);

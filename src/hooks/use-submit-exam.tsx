@@ -8,7 +8,7 @@ import { CODE_SUCCESS, QUESTION_TYPE } from '@/common/constant';
 import { DataContentType } from '@/component/exam-content/exam-content.model';
 import { AnswerRequest, ExamRequest } from '@/component/list-exam/list-exam.model';
 
-const useSubmitExam = () => {
+const useSubmitExam = (skill?: string) => {
   const dispatch = useDispatch();
   const { notify } = useToast();
 
@@ -37,6 +37,7 @@ const useSubmitExam = () => {
 
     const payload: ExamRequest = {
       answers: request,
+      skill,
       examTestId: 0,
     };
 

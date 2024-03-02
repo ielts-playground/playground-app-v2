@@ -18,7 +18,7 @@ import ExamHeader from '@/component/layout/header/exam-header/exam-header';
 const ListeningPage = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { handleSubmit } = useSubmitExam();
+  const { handleSubmit } = useSubmitExam('listening');
 
   const audioRef = useRef<any>(null);
   const listQuestionRef = useRef<DataContentType[]>([]);

@@ -6,4 +6,4 @@ export type ListExamType = {
 
 export type AnswerRequest = { [key: string]: string };
 
-export type ExamRequest = { answers: AnswerRequest; examTestId?: number };
+export type ExamRequest = { answers: AnswerRequest; skill?: string; examTestId?: number };
