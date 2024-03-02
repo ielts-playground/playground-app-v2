@@ -16,7 +16,7 @@ import { AnswerRequest, ExamRequest } from '@/component/list-exam/list-exam.mode
 
 const WritingPage = () => {
   const dispatch = useDispatch();
-  const { handleSubmit } = useSubmitExam();
+  const { handleSubmit } = useSubmitExam('writing');
 
   const listQuestionRef = useRef<DataContentType[]>([]);
   const idSubmitRef = useRef<number>(0);
